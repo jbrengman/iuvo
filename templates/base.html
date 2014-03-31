@@ -10,10 +10,13 @@
         {% block navbar %}
         <ul>
             <li><a href="/">Home</a></li>
+            <li><a href="/about/">about</a></li>
             {% if user %}
-            <li><a href="/user/">Control Panel</a></li>
+            <li><a href="/user/">{% bootstrap_icon "glyphicon-user" %} Control Panel</a></li>
+            <li><a href="/new/">{% bootstrap_icon "glyphicon-plus" %} New Event</a></li>
             {% else %}
-            <li><a href="login">Login/Register</a></li>
+            <li><a href="/login/">Login/Register</a></li>
+            {% endif %}
         </ul>
         {% endblock %}
     </div>
@@ -22,4 +25,8 @@
         {% block content %}{% endblock %}
     </div>
 </body>
+<footer>
+iuvō – created in seattle for <a href="http://codefellows.org">code fellows</a><br />
+©2014
+</footer>
 </html>

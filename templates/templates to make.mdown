@@ -1,0 +1,52 @@
+# iuvō templates
+
+## Base template (_base.html_)
+Simply a template off of which all the others are based.
+
+## Home Page (_homepage.html_) ##
+* Login box (Oauth)
+* Welcome blurb
+* Explanation of how to use.
+    * Possibly refactored to be a video.
+
+## Event details (_single_reminder.html_)
+* Name of sender
+* Their message w/r/t where they were going.
+* Yelp/GMaps/gplaces/whatever
+
+
+##Registration & Login
+* Login page (_login.html_) (Is this needed? Could just always be in menu bar.)
+* Registration page (_register.html_) (Not needed if using OAuth only)
+    * Name
+    * Email
+    * password
+* Confirmation page (_confirm.html_) (Needed as a redirect after OAuth?)
+    * Placeholder – click the link in your email
+
+## User Pages
+A unified set of pages that allow users to edit personal information, create/edit/archive/delete events, and add & edit contacts.
+### User Profile (_profile.html_)
+* Edit email
+* Add contact methods:
+    * Phone/?
+
+### Create event (_create_alert.html_)
+* Name of event
+* Time to contact
+* Place of event
+* Message text
+* People to contact (? - or just send to all contacts?)
+    * Method(s) for contact (email, G+ Circles, fb lists, tw, whatever)
+
+### Manage event (_reminders.html_)
+* List view of all events
+* Edit event
+* Confirm/Archive (Turn Off)/Delete (I didn't go!) event (This includes 'confirming')
+
+### Manage Contacts (_contacts.html_)
+* Add contact (Does contact need to OK being contacted?)
+    * Name
+    * Email
+* Edit contact
+* Delete contact

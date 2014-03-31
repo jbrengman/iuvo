@@ -1,12 +1,10 @@
 from django.conf.urls import patterns, include, url
-
 from django.contrib import admin
+import iuvo_app.urls
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'iuvo.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
+urlpatterns = patterns(
+    '',
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include(iuvo_app.urls))
 )

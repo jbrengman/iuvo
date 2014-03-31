@@ -1,0 +1,21 @@
+-1
+User has checked in or canceled event.
+
+0
+Event is in the future
+
+1
+Event is currently ongoing
+
+2
+Event has passed end time, notify the user at this point
+
+3
+Event has passed end time and notify time, user has been notified, notify contacts at this point
+
+4
+Event has passed end time and notify time, the user has been notified, contacts have been notified
+
+5?
+Set this value if some time interval (1 day? 3 days? week?) has passed. Send user another email, and
+possibly suspend user's account/other events until the user checks in.

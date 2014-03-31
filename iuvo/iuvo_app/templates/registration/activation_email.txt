@@ -1,0 +1,10 @@
+{% extends "registration/email.txt" %}
+
+{% block body %}
+You have {{ expiration_days }} days to activate your account.
+
+Please click on the following link to activate your account.
+You have {{ expiration_days }} days to activate your account.
+
+http://{{ site.domain }}/accounts/activate/{{ activation_key }}
+{% endblock %}

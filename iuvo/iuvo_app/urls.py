@@ -6,8 +6,10 @@ urlpatterns = patterns(
     url(r'^$', 'home_view', name='home'),
     url(r'^login/$', 'login_view', name='login'),
     url(r'^register/$', 'register_view', name='register'),
+    url(r'^about/$', 'about_view', name='about'),
 
     url(r'^(\d+)/$', 'dashboard_view', name='dashboard'),
+    url(r'^(\d+)/events/(\d+)/checkin/$', 'dashboard_view', name='dashboard'),
 
     url(r'^(\d+)/events/$', 'events_list_view', name='events_list'),
     url(r'^(\d+)/events/new/$', 'create_event_view', name='create_event'),

@@ -1,0 +1,7 @@
+{% extends 'iuvo_app/base.html' %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block content %}
+Thanks!  Your account has been activated.  Please <a href="{% url 'login' %}">login to continue</a>
+{% endblock %}

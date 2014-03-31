@@ -1,14 +1,32 @@
 # iuvo templates:
-* **Home Page**
+* **Home Page** (_homepage.html_)
     * Login box
     * Welcome blurb
     * Explanation of how to use.
-* **Event details**
+        * Possibly extend to include video.
+* **Event details** (_single_reminder.html_)
 * **User Pages**
     * Registration
-        * Registration page
-        * Confirmation page
-    * User Dashboard
-        * Create event
-        * Manage event
-        * Manage Contacts
+        * Login page (_login.html_) (Is this needed? Could just always be in menu bar.)
+        * Registration page (_register.html_)
+            * Name
+            * Email
+            * password
+        * Confirmation page (_confirm.html_)
+            * Placeholder – click the link in your email
+    * User Dashboard – Allows users to manage (add, edit, delete) events & contacts.
+        * Create event (_create.html_)
+            * Name of event
+            * Time of event
+            * Place of event
+            * Message text
+            * People to contact (? - or just send to all contacts?)
+        * Manage event (_reminders.html_)
+            * Edit event
+            * Delete event (This includes 'confirming')
+        * Manage Contacts (_contacts.html_)
+            * Add contact (Does contact need to OK being contacted?)
+                * Name
+                * Email
+            * Edit contact
+            * Delete contact

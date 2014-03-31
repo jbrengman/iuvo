@@ -18,29 +18,45 @@ def register_view(request):
     pass
 
 
+def about_view(request):
+    pass
+
+
 def dashboard_view(request, user_id):
     pass
 
 
-def create_event_view(request):
+def check_in_view(request, user_id, event_id):
     pass
 
 
-def edit_event_view(request):
+def event_list_view(request, user_id):
     pass
 
 
-def create_contact_view(request):
+def create_event_view(request, user_id):
     pass
 
 
-def edit_contact_view(request):
+def view_event_view(request, user_id, event_id):
     pass
 
 
-def check_in_view(request):
+def edit_event_view(request, user_id, event_id):
     pass
 
 
-def about_view(request):
+def contact_list_view(request, user_id):
+    pass
+
+
+def create_contact_view(request, user_id):
+    pass
+
+
+def view_contact_view(request, user_id, contact_id):
+    pass
+
+
+def edit_contact_view(request, user_id, contact_id):
     pass

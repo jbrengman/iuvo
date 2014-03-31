@@ -46,6 +46,16 @@ class Base(Configuration):
 
     INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
+    ACCOUNT_ACTIVATION_DAYS = 3
+
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = 'user@gmail.com'
+    EMAIL_HOST_PASSWORD = 'secret'
+    DEFAULT_FROM_EMAIL = 'user@gmail.com'
+    EMAIL_PORT = 587
+
     MIDDLEWARE_CLASSES = (
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
@@ -98,8 +108,10 @@ class Base(Configuration):
 class Dev(Base):
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
-
     TEMPLATE_DEBUG = True
+    INSTALLED_APPS = Base.INSTALLED_APPS + ('debug_toolbar',)
+
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 class Prod(Base):

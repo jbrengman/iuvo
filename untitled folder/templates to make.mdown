@@ -1,12 +1,13 @@
-# ivvo templates:
+# iuvo templates:
 * **Home Page**
     * Login box
     * Welcome blurb
     * Explanation of how to use.
 * **Event details**
 * **User Pages**
-    * Register
-        * Confirmation
+    * Registration
+        * Registration page
+        * Confirmation page
     * User Dashboard
         * Create event
         * Manage event

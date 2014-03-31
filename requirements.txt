@@ -1,5 +1,15 @@
 Django==1.6.2
+Fabric==1.8.3
 South==0.8.4
-argparse==1.2.1
+argparse==1.1
+django-bootstrap3==4.0.1
+django-configurations==0.8
+django-crontab==0.5.1
+django-debug-toolbar==1.0.1
+django-registration==1.0
+ecdsa==0.11
+paramiko==1.12.3
 psycopg2==2.5.2
+pycrypto==2.6.1
+sqlparse==0.1.11
 wsgiref==0.1.2

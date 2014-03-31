@@ -69,10 +69,8 @@ class Base(Configuration):
 
     WSGI_APPLICATION = 'iuvo.wsgi.application'
 
-
     # Database
     # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -101,7 +99,7 @@ class Base(Configuration):
     # run "python manage.py crontab add" to add jobs to crontab
     # run "python manage.py crontab remove" to remove jobs
     CRONJOBS = [
-        ('*/5 * * * *', 'myproject.myapp.cron.my_scheduled_job')
+        ('*/5 * * * *', 'iuvo.iuvo_app.cron.my_scheduled_job')
     ]
 
 

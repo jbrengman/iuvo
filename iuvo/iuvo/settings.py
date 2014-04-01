@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'south',
     'iuvo_app',
+    'bootstrap3'
 )
 
 MIDDLEWARE_CLASSES = (

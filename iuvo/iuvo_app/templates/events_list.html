@@ -1,0 +1,32 @@
+{% extends 'temp_base.html' %}
+{% load bootstrap3 %}
+
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+{% block head %}
+{{ title }}
+{% endblock head %}
+
+
+{% block content %}
+{% for event in events %}
+<a href="{% url 'iuvo_app.views.view_event_view' user.pk event.pk %}">
+title: {{ event.title }}</a><br>
+start: {{ event.start_date }}<br>
+end: {{ event.end_date }}<br>
+notify: {{ event.notify_date }}<br>
+location: {{ event.location }}<br>
+message: {{ event.message }}<br>
+status: {{ event.status }}<br>
+contacts: 
+    {% for contact in event.contacts.all %}
+    {{ contact.name}}/{{ contact.email }}, 
+    {% endfor %}
+<br><br>
+{% endfor %}
+{% endblock content %}

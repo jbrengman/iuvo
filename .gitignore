@@ -1,5 +1,8 @@
 # From github's Python.gitignore
 
+# South's Migration Files
+migrations/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

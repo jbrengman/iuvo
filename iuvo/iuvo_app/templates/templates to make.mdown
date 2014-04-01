@@ -37,6 +37,14 @@ Extends base.html
 A unified set of pages that allow users to edit personal information, create/edit/archive/delete events, and add & edit contacts.
 
 Might want to have its own base? Not sure how best to do this.
+
+### User Home (_user_home.html_)
+The default page for the user panel.
+
+* List of events. If empty, prompts to create on.
+* Jumbotron with a "Your next alert is scheduled for ___"?
+
+
 #### User Profile (_profile.html_)
 * Edit email
 * Add contact methods:
@@ -61,3 +69,13 @@ Might want to have its own base? Not sure how best to do this.
     * Email
 * Edit contact
 * Delete contact
+
+## General Styling Notes
+* Color scheme: <http://bootswatch.com/flatly/>
+* Bootstrap glyphs <http://getbootstrap.com/components/>
+* Bootstrap CSS <http://getbootstrap.com/css/>
+* Bootstrap JS <http://getbootstrap.com/javascript/>
+* django-bootstrap3 docs: <http://django-bootstrap3.readthedocs.org>
+* integrating bootstrap/static files: <http://thiruk.wordpress.com/2013/02/17/integrating-twitter-bootstrap-with-django-in-simple-steps/>
+* <http://www.realpython.com/blog/design/getting-started-with-bootstrap-3/>
+* <http://www.tangowithdjango.com/book/chapters/bootstrap.html>

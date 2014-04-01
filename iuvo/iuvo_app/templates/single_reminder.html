@@ -3,4 +3,20 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 {% block content %}
+<h1>Heads up</h1>
+Your friend, {% sender_name %}, went to {% location %} and wanted you to know
+the following:
+
+<p>{% user_description %}</p>
+{# The above is a message from the alert creator that says where they went,
+when they planned to get back, etc. #}
+
+<p>You can get in touch with them the following ways:
+<ul><li>{% user_phone_number %}</li>
+<li>{% user_email %}</li>
+<li>{% other_contact_info %}</li></ul>
+
+<p>Here is where they went:<br />
+{# It'd be great to have another column with a map or something. #}
+
 {% endblock %}

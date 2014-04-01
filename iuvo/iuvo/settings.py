@@ -75,6 +75,9 @@ class Base(Configuration):
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'iuvodb',
+            'USER': 'admin',
+            'PASSWORD': 'admin',
+            'HOST': 'localhost',
         }
     }
 
@@ -99,7 +102,7 @@ class Base(Configuration):
     # run "python manage.py crontab add" to add jobs to crontab
     # run "python manage.py crontab remove" to remove jobs
     CRONJOBS = [
-        ('*/5 * * * *', 'iuvo.iuvo_app.cron.test')
+        ('*/1 * * * *', 'iuvo_app.cron.status_change_test')
     ]
 
 

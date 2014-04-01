@@ -1,7 +1,84 @@
+{#
+This page will render two tables: one of pending events, the other of past
+ events.
+The current events will be clickable; clicking on an event will take the user
+ to the event's 'edit' page.
+A cool extension would be to include a fourth column that allows for deleting
+ the event.
+ #}
 {% extends 'iuvo_app/base.html' %}
 {% load bootstrap3 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 {% block content %}
+<h1>Pending Events</h1>
+{% if current_events %}
 {# Shows list of past & current reminders #}
+<p>The following events are currently counting down:
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Time</th>
+      <th>Place</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for event in events %}
+    <tr>
+      <td>1</td>
+      <td>{{ event.name }}</td>
+      <td>{{ event.time }}</td>
+      <td>{{ event.place }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+  {% else %}
+  <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">No pending events!</h3>
+  </div>
+  <div class="panel-body">
+      You have no pending events! Add one the next time you're going out!
+  </div>
+</div>
+{% endif %}
+<h2>Past Events</h2>
+{% if past_events %}
+{# Shows list of past & current reminders #}
+<p>The following events are all done:
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Time</th>
+      <th>Place</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for event in past_events %}
+    <tr>
+      <td>1</td>
+      <td>{{ event.name }}</td>
+      <td>{{ event.time }}</td>
+      <td>{{ event.place }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+  {% else %}
+  <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">No past events!</h3>
+  </div>
+  <div class="panel-body">
+      You haven't saved any events – don't forget to add one the next time you
+      go out!
+  </div>
+</div>
+{% endif %}
+
 {% endblock %}

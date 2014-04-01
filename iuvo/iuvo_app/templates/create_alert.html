@@ -1,3 +1,8 @@
+{% extends 'iuvo_app/base.html' %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block content %}
 {% if logged_in %}
 <h1>Create A New Reminder</h1>
 {{ bootstrap_form: create_reminder}}
@@ -6,3 +11,4 @@
 <p>If you want to create a reminder, you need to be logged in.
 {% endif %}
 {# Is it possible to do this in the view so it will flask the 'else' condition after auto redirecting to the login page? #}
+{% endblock %}

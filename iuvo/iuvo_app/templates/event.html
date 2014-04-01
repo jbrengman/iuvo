@@ -23,7 +23,7 @@ message: {{ event.message }}<br>
 status: {{ event.status }}<br>
 contacts: 
     {% for contact in event.contacts.all %}
-    {{ contact.name}}/{{ contact.email }}, 
+    {{ contact.name}}/{{ contact.email }},
     {% endfor %}
 <br><br>
 {% endblock content %}

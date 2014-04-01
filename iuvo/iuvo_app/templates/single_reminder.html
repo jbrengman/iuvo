@@ -1,0 +1,32 @@
+{% extends 'iuvo_app/base.html' %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block content %}
+<div class="jumbotron">
+<h1>welcome to iuvō</h1>
+<p>You are receiving this notification because your friend wanted to be double-plus
+sure that they get home safe, not because something is wrong.<br />
+Please read the below for more information.
+</div>
+<h1>Heads up</h1>
+Your friend, {% sender_name %}, went to {% location %} and wanted you to know
+the following:
+
+<p>{% user_note %}</p>
+{# The above is a message from the alert creator that says where they went,
+when they planned to get back, etc.
+It is written when they create the alert.#}
+
+<p>You can get in touch with them the following ways:
+<ul><li>{% user_phone_number %}</li>
+<li>{% user_email %}</li>
+<li>{% other_contact_info %}</li></ul>
+
+<p>When you get a chance, please get in touch.
+<br />Thanks!
+
+<p>Here is where they went:<br />
+{# It'd be great to have another column with a map or something. #}
+
+{% endblock %}

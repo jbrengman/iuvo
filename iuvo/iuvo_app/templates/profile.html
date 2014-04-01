@@ -1,0 +1,18 @@
+{#
+This is the user's profile page.
+They can change their name, email, and phone number.
+They can also set their time zone.
+Is there anything else they should be able to do?
+ #}
+{% extends 'iuvo_app/base.html' %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block content %}
+<h1>profile</h1>
+<h3>Welcome, {% user_name %}! You can update your personal information
+below.</h3>
+
+{% bootstrap_form: personal_information %}
+
+{% endblock %}

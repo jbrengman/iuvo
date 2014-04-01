@@ -12,9 +12,46 @@ A cool extension would be to include a fourth column that allows for deleting
 {% bootstrap_javascript %}
 {% block content %}
 <h1>Pending Events</h1>
-{% if current_events %}
+
 {# Shows list of past & current reminders #}
-<p>The following events are currently counting down:
+{% if active_events %}
+<p>
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title">The following alerts are currently active:</h3>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Time</th>
+      <th>Place</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for event in events %}
+    <tr>
+      <td>1</td>
+      <td>{{ event.name }}</td>
+      <td>{{ event.time }}</td>
+      <td>{{ event.place }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+  </div>
+</div>
+{% else %}
+<h2>Sweet, you have no active alerts!</h2>
+{% endif %}
+{% if current_events %}
+  <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">The following events are currently counting down:</h3>
+  </div>
+  <div class="panel-body">
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
@@ -35,6 +72,8 @@ A cool extension would be to include a fourth column that allows for deleting
   {% endfor %}
   </tbody>
   </table>
+  </div>
+  </div>
   {% else %}
   <div class="panel panel-primary">
   <div class="panel-heading">

@@ -99,7 +99,7 @@ class Base(Configuration):
     # run "python manage.py crontab add" to add jobs to crontab
     # run "python manage.py crontab remove" to remove jobs
     CRONJOBS = [
-        ('*/5 * * * *', 'iuvo.iuvo_app.cron.my_scheduled_job')
+        ('*/5 * * * *', 'iuvo.iuvo_app.cron.test')
     ]
 
 

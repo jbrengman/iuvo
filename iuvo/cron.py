@@ -1,4 +1,5 @@
-from models
+# from models
 
-def my_scheduled_job():
-    pass
+
+def test():
+    print('test')

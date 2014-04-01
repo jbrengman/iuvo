@@ -1,0 +1,29 @@
+{% extends 'temp_base.html' %}
+{% load bootstrap3 %}
+
+
+
+{% block title %}
+{{ event.title }}
+{% endblock title %}
+
+
+{% block head %}
+{{ event.title }}
+{% endblock head %}
+
+
+{% block content %}
+title: {{ event.title }}<br>
+start: {{ event.start_date }}<br>
+end: {{ event.end_date }}<br>
+notify: {{ event.notify_date }}<br>
+location: {{ event.location }}<br>
+message: {{ event.message }}<br>
+status: {{ event.status }}<br>
+contacts: 
+    {% for contact in event.contacts.all %}
+    {{ contact.name}}/{{ contact.email }}, 
+    {% endfor %}
+<br><br>
+{% endblock content %}

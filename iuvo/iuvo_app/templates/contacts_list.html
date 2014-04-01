@@ -1,0 +1,26 @@
+{% extends 'temp_base.html' %}
+{% load bootstrap3 %}
+
+
+
+{% block title %}
+Contacts list
+{% endblock title %}
+
+
+{% block head %}
+Contacts list
+{% endblock head %}
+
+
+{% block content %}
+{% for contact in contacts %}
+<a href="{% url 'iuvo_app.views.view_contact_view' user.pk contact.pk %}">
+name: {{ contact.name }}</a><br>
+email: {{ contact.email }}<br>
+phone_str: {{ contact.phone_str }}<br>
+phone_int: {{ contact.phone_int }}<br>
+description: {{ contact.description }}<br>
+<br><br>
+{% endfor %}
+{% endblock content %}

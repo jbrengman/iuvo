@@ -6,6 +6,15 @@
 {% if logged_in %}
 <h1>Create A New Reminder</h1>
 {{ bootstrap_form: create_reminder}}
+{#
+* Where you're going
+* When you're expecting to be back
+* Message for recipents (eg "I'm hiking Mt Si and expect to be back by 8. Since
+you're getting this message, I may not have made it back by the time I planned.
+Could you please get in touch to make sure all's good? Thanks.")
+* Recipient list
+* Anything else?
+#}
 {% else %}
 <h1>Please log in</h1>
 <p>If you want to create a reminder, you need to be logged in.

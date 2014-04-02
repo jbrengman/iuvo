@@ -1,12 +1,24 @@
-{% extends 'iuvo_app/base.html' %}
+{% extends 'base.html' %}
 {% load bootstrap3 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 {% block content %}
-{% if logged_in %}
+{% if user.is_authenticated %}
 <h1>Create A New Contact</h1>
 Please complete the following form to create a new emergency contact.
-{{ bootstrap_form: create_contact}}
+
+<form action="{% url 'iuvo_app.views.create_contact_view' user.pk %}" method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form contact_form %}
+
+
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "picture" %} Create
+        </button>
+    {% endbuttons %}
+</form>
+
 {% else %}
 <h1>Please log in</h1>
 <p>If you want to create a contact, you need to be logged in.

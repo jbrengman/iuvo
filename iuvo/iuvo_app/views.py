@@ -104,10 +104,9 @@ def create_event_view(request, user_id):
                 form.cleaned_data.get('notify_time'))
 
             now = datetime.datetime.now()
-            if (  # Checking for appropriate dates.
-                    start_date < now or
-                    end_date < start_date or
-                    notify_date < end_date):
+            # if (  # Checking for appropriate dates.
+                    # start_date < now or
+            if (end_date < start_date or notify_date < end_date):
                 raise ValueError  # Change this to a better response
 
             event.start_date = start_date

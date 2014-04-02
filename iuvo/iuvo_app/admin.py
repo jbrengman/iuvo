@@ -1,8 +1,4 @@
 from django.contrib import admin
-<<<<<<< HEAD
-
-# Register your models here.
-=======
 from django.core.urlresolvers import reverse
 from iuvo_app.models import Contact, Event
 
@@ -45,4 +41,3 @@ class EventAdmin(admin.ModelAdmin):
 
 admin.site.register(Contact, ContactAdmin)
 admin.site.register(Event, EventAdmin)
->>>>>>> jordan

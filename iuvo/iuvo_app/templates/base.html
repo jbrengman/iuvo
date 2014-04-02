@@ -25,32 +25,24 @@
   <div class="navbar-collapse collapse navbar-inverse-collapse">
     <ul class="nav navbar-nav">
       <li><a href="/about">about</a></li>
-      {% if user %}
-      {% else %}
       <li><a href="/register">register</a></li>
-      {% endif %}
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
-      {% if user %}
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Control <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="/user/">{% bootstrap_icon "glyphicon-user" %} {{user.name}} Home</a></li>
-          <li><a href="/new/">{% bootstrap_icon "glyphicon-plus" %} New Event</a></li>
-          <li><a href="/new/">{% bootstrap_icon "glyphicon-list-alt" %} Events</a></li>
-          <li><a href="/new/">{% bootstrap_icon "glyphicon-earphone" %} Contacts</a></li>
+          <li><a href="/user/">{% bootstrap_icon "glyphicon-user" %} Home</a></li>
+          <li><a href="/new/">{# {% bootstrap_icon "glyphicon-plus" %} #} New Event</a></li>
+          <li><a href="/new/">{# {% bootstrap_icon "glyphicon-list-alt" %} #} Events</a></li>
+          <li><a href="/new/">{# {% bootstrap_icon "glyphicon-earphone" %} #} Contacts</a></li>
           <li class="divider"></li>
-          <li><a href="#">{% bootstrap_icon "glyphicon-log-out" %}Log Out</a></li>
+          <li><a href="#">{# {% bootstrap_icon "glyphicon-log-out" %} #}Log Out</a></li>
         </ul>
       </li>
-      {% else %}
-      <li><a href="/login/">Login</a></li>
-      {% endif %}
     </ul>
   </div>
 </div>
-</nav>
 
 {% endblock %}
 {# Display django.contrib.messages as Bootstrap alerts #}

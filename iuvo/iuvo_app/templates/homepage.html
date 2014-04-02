@@ -1,33 +1,37 @@
-{% extends 'iuvo_app/base.html' %}
+{% extends 'base.html' %}
 {% load bootstrap3 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 {% block content %}
-<h2>About</h2>
-iuvo (Latin for 'I help!') gives you peace of mind when you're out and about by
+ <div class="jumbotron">
+    <div class="container">
+      <h1>Leave Home With Peace of Mind</h1>
+      <p class="lead">A solo hike? A first date? Automatically let your friends know if things take an unexpected turn.</p>
+      <a class="btn btn-primary btn-lg btn-block">Get Started Now!</a>
+    </div>
+  </div>
+  <div class="container">
+  <h2>How It Works</h2>
+  <p><h3>iuvō (Latin for 'I help!') gives you peace of mind when you're out and about by
  automatically contacting people you trust if you don't make it home by the
-  time you expect to.
-<h3>Suggested Uses</h3>
-<strong>Going Hiking? Make people know if you don't make it back.</strong><br />
-<strong>Meeting someone from OKCupid? Get a check-in call mid-date if you
- aren't diggin' it.</strong>
-<h3>How It Works</h3>
-iuvo keeps you safe and sound in three simple steps:
-<ol><li><strong>Register & Add Contacts</strong><br />
-After signing up for the service, go to the <strong>Add Contacts</strong> page
- and enter the names and email addresses of some trusted friends. (Don't worry;
- we'll never spam them or share their contact info with anyone.
- Scout's honor!)</li>
-<li><strong>Set Up A Reminder</strong><br />
-The next time you're going out on a hike or out on a date, set up a reminder.
-<strong>Alerts are sent automatically.</strong><br />
-If you don't log in and turn off the alert by the specified time, emails will
- be sent to your contacts to check in with you.
-</li>
-<li><strong>Go out and have fun.</strong><br />
- You can go on your hike or your date without any worries.</li>
-<li><strong>Turn off your reminder.</strong><br />
-Once you're back from your event, turn off your reminder so your friends won't
- get an email telling them to check in with you!</li>
-</ol>
-{% endblock %}
+  time you expect to be.</h3>
+  <div class="row">
+    <div class="col-md-4">
+      <p><h3>1. Register and Set Contacts</h3><br />
+After signing up for the service, go to the Add Contacts page
+ and enter the names and email addresses of some trusted friends. (Don't worry; we'll never spam them or share their contact info with anyone.
+ Scout's honor!)</p>
+    </div>
+    <div class="col-md-4">
+      <p><h3>2. Flying Solo? Set Up An Alert!</h3><br />
+Before you leave for that solo trek of the Appalachian trail, just enter when you're leaving, when you're going to come back, and a message. If you get held up and don't turn off the notification before a specific time, your message will automatically be sent to the contacts you selected.</p>
+    </div>
+    <div class="col-md-4">
+      <p><h3>3. Go out and have fun.</h3><br />
+ You can go on your hike or your date without any worries.<br />
+ Once you're back from your event, turn off your reminder so your friends won't get an email telling them to check in with you…even though you've got lots of great stories to tell!</p>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,9 @@
+{% extends "notifications/email.txt" %}
+
+{% block body %}
+Hello, {{ first_name }} {{ last_name }}
+
+You had scheduled an event at Iuvo.com.  It is now {{ late }} days past the end time for this event.  Please, log into your account and check-in or your account will be suspended.  Thank you.
+
+http://{{ site.domain }}
+{% endblock %}

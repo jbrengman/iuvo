@@ -13,21 +13,6 @@
     <title>{% block title %} - don't worry: iuvo!{% endblock %}</title>
 </head>
 {% block navbar %}
-    <div id="navbar">
-    <nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">iuvō</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="navbar navbar-inverse">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -40,8 +25,12 @@
   <div class="navbar-collapse collapse navbar-inverse-collapse">
     <ul class="nav navbar-nav">
       <li><a href="/about">about</a></li>
+      {% if user %}
+      {% else %}
+      <li><a href="/register">register</a></li>
+      {% endif %}
+    </ul>
 
-  <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav navbar-right">
       {% if user %}
       <li class="dropdown">
@@ -51,13 +40,12 @@
           <li><a href="/new/">{% bootstrap_icon "glyphicon-plus" %} New Event</a></li>
           <li><a href="/new/">{% bootstrap_icon "glyphicon-list-alt" %} Events</a></li>
           <li><a href="/new/">{% bootstrap_icon "glyphicon-earphone" %} Contacts</a></li>
-          <li><a href="#">Something else here</a></li>
           <li class="divider"></li>
           <li><a href="#">{% bootstrap_icon "glyphicon-log-out" %}Log Out</a></li>
         </ul>
       </li>
       {% else %}
-      <li><a href="/login/">Login/Register</a></li>
+      <li><a href="/login/">Login</a></li>
       {% endif %}
     </ul>
   </div>

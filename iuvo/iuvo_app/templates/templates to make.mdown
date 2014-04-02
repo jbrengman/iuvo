@@ -38,7 +38,7 @@ A unified set of pages that allow users to edit personal information, create/edi
 
 Might want to have its own base? Not sure how best to do this.
 
-### User Home (_user_home.html_)
+### User Home (_reminders.html_)
 The default page for the user panel.
 
 * List of events. If empty, prompts to create on.

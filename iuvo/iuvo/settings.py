@@ -51,9 +51,9 @@ class Base(Configuration):
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True
     EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_HOST_USER = 'user@gmail.com'
-    EMAIL_HOST_PASSWORD = 'secret'
-    DEFAULT_FROM_EMAIL = 'user@gmail.com'
+    EMAIL_HOST_USER = 'jwhitecf@gmail.com'
+    EMAIL_HOST_PASSWORD = 'junk3r3ma1lf0rflask'
+    DEFAULT_FROM_EMAIL = 'jwhitecf@gmail.com'
     EMAIL_PORT = 587
 
     MIDDLEWARE_CLASSES = (
@@ -75,6 +75,9 @@ class Base(Configuration):
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'iuvodb',
+            'USER': 'admin',
+            'PASSWORD': 'admin',
+            'HOST': 'localhost',
         }
     }
 
@@ -99,10 +102,16 @@ class Base(Configuration):
 
     STATIC_URL = '/static/'
 
+    TEMPLATE_CONTEXT_PROCESSORS = (
+        'django.contrib.messages.context_processors.messages',
+        'django.contrib.auth.context_processors.auth')
+
     # run "python manage.py crontab add" to add jobs to crontab
     # run "python manage.py crontab remove" to remove jobs
     CRONJOBS = [
-        ('*/5 * * * *', 'iuvo.iuvo_app.cron.test')
+        # ('*/1 * * * *', 'iuvo_app.cron.send_with_username'),
+        # ('*/1 * * * *', 'iuvo_app.cron.send_notifications'),
+        ('*/1 * * * *', 'iuvo_app.cron.send_3day_notifications'),
     ]
 
 
@@ -112,7 +121,7 @@ class Dev(Base):
     TEMPLATE_DEBUG = True
     INSTALLED_APPS = Base.INSTALLED_APPS + ('debug_toolbar',)
 
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 class Prod(Base):

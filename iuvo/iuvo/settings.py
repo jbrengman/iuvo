@@ -75,9 +75,9 @@ class Base(Configuration):
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'iuvodb',
-            'USER': 'admin',
-            'PASSWORD': 'admin',
-            'HOST': 'localhost',
+            # 'USER': 'admin',
+            # 'PASSWORD': 'admin',
+            # 'HOST': 'localhost',
         }
     }
 

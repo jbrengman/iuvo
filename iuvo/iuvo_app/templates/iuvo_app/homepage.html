@@ -3,31 +3,37 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 {% block content %}
-<h2>About</h2>
-iuvo (Latin for 'I help!') gives you peace of mind when you're out and about by
+ <div class="jumbotron">
+    <div class="container">
+      <h1>Leave Home With Peace of Mind</h1>
+      <p class="lead">A solo hike? A first date? Automatically let your friends know if things take an unexpected turn.</p>
+      <a class="btn btn-primary btn-lg btn-block">Find Out How</a>
+    </div>
+  </div>
+  <div class="container">
+  <h2>How It Works</h2>
+  <p>iuvo (Latin for 'I help!') gives you peace of mind when you're out and about by
  automatically contacting people you trust if you don't make it home by the
-  time you expect to.
-<h3>Suggested Uses</h3>
-<strong>Going Hiking? Make people know if you don't make it back.</strong><br />
-<strong>Meeting someone from OKCupid? Get a check-in call mid-date if you
- aren't diggin' it.</strong>
-<h3>How It Works</h3>
-iuvo keeps you safe and sound in three simple steps:
-<ol><li><strong>Register & Add Contacts</strong><br />
+  time you expect to be.
+  <div class="row">
+    <div class="col-md-4">
+      <p><h3>Register & Add Contacts</h3><br />
 After signing up for the service, go to the <strong>Add Contacts</strong> page
  and enter the names and email addresses of some trusted friends. (Don't worry;
  we'll never spam them or share their contact info with anyone.
- Scout's honor!)</li>
-<li><strong>Set Up A Reminder</strong><br />
-The next time you're going out on a hike or out on a date, set up a reminder.
-<strong>Alerts are sent automatically.</strong><br />
+ Scout's honor!)</p>
+    </div>
+    <div class="col-md-4">
+      <p><h3>Alerts are sent automatically.</h3><br />
 If you don't log in and turn off the alert by the specified time, emails will
- be sent to your contacts to check in with you.
-</li>
-<li><strong>Go out and have fun.</strong><br />
- You can go on your hike or your date without any worries.</li>
-<li><strong>Turn off your reminder.</strong><br />
-Once you're back from your event, turn off your reminder so your friends won't
- get an email telling them to check in with you!</li>
-</ol>
+ be sent to your contacts to check in with you.</p>
+    </div>
+    <div class="col-md-4">
+      <p><h3>Go out and have fun.</h3><br />
+ You can go on your hike or your date without any worries.<br />
+ Once you're back from your event, turn off your reminder so your friends won't get an email telling them to check in with you!</p>
+    </div>
+  </div>
+</div>
+
 {% endblock content %}

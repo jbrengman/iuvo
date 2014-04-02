@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-from django.shortcuts import render
-
-# Create your views here.
-=======
 from django.shortcuts import render, redirect
 from django.http import Http404
 from django.contrib.auth import authenticate, login, logout
@@ -12,7 +7,7 @@ from iuvo_app.models import User, Event, Contact
 
 def home_view(request):
     context = {}
-    return render(request, 'placeholder.html', context)
+    return render(request, 'homepage.html', context)
 
 
 def login_view(request):
@@ -111,4 +106,3 @@ def view_contact_view(request, user_id, contact_id):
 
 def edit_contact_view(request, user_id, contact_id):
     pass
->>>>>>> jordan

@@ -4,15 +4,25 @@
 
 
 {% block title %}
-
+Create contact
 {% endblock title %}
 
 
 {% block head %}
-
+Create contact
 {% endblock head %}
 
 
 {% block content %}
+<form action="{% url 'iuvo_app.views.create_contact_view' user.pk %}" method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form contact_form %}
 
+
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "picture" %} Create
+        </button>
+    {% endbuttons %}
+</form>
 {% endblock content %}

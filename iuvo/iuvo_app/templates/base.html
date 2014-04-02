@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_javascript %}
+{% bootstrap_css %}
+
+
 <head>
     <link rel="stylesheet" href="style.css" />
     <title>{% block title %} - don't worry: iuvo!{% endblock %}</title>
@@ -71,13 +79,16 @@
         </ul>
     </div>
 {% endblock %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
 <body>
     <div id="content">
         {% block content %}{% endblock %}
     </div>
-</body>
 <footer>
 iuvō – made in seattle for <a href="http://codefellows.org">code fellows</a><br />
 ©2014
 </footer>
+</body>
+
 </html>

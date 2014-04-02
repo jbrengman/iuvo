@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import Http404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
-from iuvo_app.models import User, Event, Contact
+from iuvo_app.models import Event, Contact
 from iuvo_app.forms import ContactForm, EventForm
 import datetime
 
@@ -83,7 +83,6 @@ def create_event_view(request, user_id):
         if form.is_valid():
             event = form.save(commit=False)
             event.owner = request.user
-            # event.save()
             try:
                 event.title = form.cleaned_data.get('title')
                 event.location = form.cleaned_data.get('location')
@@ -127,16 +126,6 @@ def create_event_view(request, user_id):
     else:
         context = {'event_form': EventForm()}
         return render(request, 'create_event.html', context)
-
-
-def get_date(date, time):
-    datesplit = date.split('/')
-    date_ob = datetime.date(
-        int(datesplit[2]), int(datesplit[0]), int(datesplit[1]))
-    time_tup = time.split(':')
-    time_ob = datetime.time(int(time_tup[0]), int(time_tup[1]))
-    date_time = datetime.datetime.combine(date_ob, time_ob)
-    return date_time
 
 
 def edit_event_view(request, user_id, event_id):
@@ -183,10 +172,11 @@ def edit_event_view(request, user_id, event_id):
             event.contacts = form.cleaned_data.get('contacts')
             event.save()
         except:
-            # event.delete()
-            redirect(view_event_view, request.user.pk, event.pk)  # Add message
+            return redirect(view_event_view, request.user.pk, event.pk)
+            # Add error message/handle this better.
         else:
-            redirect(create_event_view, request.user.pk)  # Add message
+            return redirect(create_event_view, request.user.pk)
+            # Add error message/handle this better.
     else:
         context = {'event_form': EventForm(instance=event)}
         return render(request, 'edit_event.html', context)
@@ -209,18 +199,18 @@ def create_contact_view(request, user_id):
             if form.is_valid():
                 contact = form.save(commit=False)
                 contact.owner = request.user
-                contact.save()
                 contact.name = form.cleaned_data.get('name')
                 contact.email = form.cleaned_data.get('email')
                 contact.phone_str = form.cleaned_data.get('phone_str')
-                contact.phone_int = clean_num(form.cleaned_data.get('phone_str'))
+                contact.phone_int = clean_num(
+                    form.cleaned_data.get('phone_str'))
                 contact.description = form.cleaned_data.get('description')
                 contact.save()
                 return redirect(view_contact_view, request.user.pk, contact.pk)
             else:
                 return redirect(create_contact_view, request.user.pk)
         except:
-            raise Http404
+            return redirect(create_contact_view, request.user.pk)
     else:
         context = {'contact_form': ContactForm()}
         return render(request, 'create_contact.html', context)
@@ -230,8 +220,9 @@ def edit_contact_view(request, user_id, contact_id):
     if int(user_id) != request.user.pk:
         raise Http404
     try:
-        contacts = Contact.objects.filter(owner__pk=user_id)
-        contact = contacts.objects.get(pk=contact_id)
+        contact = Contact.objects.get(pk=contact_id)
+        if contact.owner.pk != request.user.pk:
+            raise Http404
     except Contact.DoesNotExist:
         raise Http404
     if request.method == 'POST':
@@ -247,8 +238,9 @@ def edit_contact_view(request, user_id, contact_id):
         else:
             return redirect(edit_event_view, request.user.pk, contact_id)
     else:
-        context = {'contact_form': ContactForm(), 'contact_id': contact_id}
-        return render(request, 'create_contact.html', context)
+        contact_form = ContactForm(instance=contact)
+        context = {'contact_form': contact_form, 'contact_id': contact_id}
+        return render(request, 'edit_contact.html', context)
 
 
 def view_contact_view(request, user_id, contact_id):
@@ -260,6 +252,18 @@ def view_contact_view(request, user_id, contact_id):
         raise Http404
     context = {'contact': contact}
     return render(request, 'contact.html', context)
+
+
+# Helper methods
+
+def get_date(date, time):
+    datesplit = date.split('/')
+    date_ob = datetime.date(
+        int(datesplit[2]), int(datesplit[0]), int(datesplit[1]))
+    time_tup = time.split(':')
+    time_ob = datetime.time(int(time_tup[0]), int(time_tup[1]))
+    date_time = datetime.datetime.combine(date_ob, time_ob)
+    return date_time
 
 
 def clean_num(num):

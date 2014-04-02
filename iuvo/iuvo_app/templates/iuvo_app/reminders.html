@@ -31,7 +31,6 @@ Three parts here:
     <table class="table table-striped table-hover ">
   <thead>
     <tr>
-      <th>#</th>
       <th>Name</th>
       <th>Notification Time</th>
       <th>Place</th>
@@ -40,7 +39,6 @@ Three parts here:
   <tbody>
   {% for event in active_events %}
     <tr>
-      <td>1</td>
       <td><a href="{% url 'iuvo_app.views.view_event_view' user.pk event.pk %}">{{ event.title }}</a></td>
       <td>{{ event.notify_date }}</td>
       <td>{{ event.location }}</td>
@@ -62,7 +60,6 @@ Three parts here:
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
-      <th>#</th>
       <th>Name</th>
       <th>Notification Time</th>
       <th>Place</th>
@@ -71,7 +68,6 @@ Three parts here:
   <tbody>
   {% for event in current_events %}
     <tr>
-      <td>1</td>
       <td>{{ event.name }}</td>
       <td>{{ event.time }}</td>
       <td>{{ event.place }}</td>
@@ -102,7 +98,6 @@ Three parts here:
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
-      <th>#</th>
       <th>Name</th>
       <th>Notification Time</th>
       <th>Place</th>
@@ -111,7 +106,6 @@ Three parts here:
   <tbody>
   {% for event in past_events %}
     <tr>
-      <td>1</td>
       <td>{{ event.name }}</td>
       <td>{{ event.time }}</td>
       <td>{{ event.place }}</td>

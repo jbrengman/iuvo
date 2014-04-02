@@ -1,11 +1,73 @@
 {% extends 'temp_base.html' %}
 {% load bootstrap3 %}
+{% load staticfiles %}
 {% block title %}
-
+Edit event
 {% endblock title %}
 {% block head %}
-
+Edit event
 {% endblock head %}
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 45%; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
+.ui-timepicker-rtl dl dt{ float: right; clear: right; }
+.ui-timepicker-rtl dl dd { margin: 0 45% 10px 10px; }
+
 {% block content %}
 
+
+
+<script src="{% static 'jquery.js' %}"></script>
+<script src="{% static 'jquery-ui/ui/jquery.ui.core.js' %}"></script>
+<script src="{% static 'jquery-ui/ui/jquery.ui.widget.js' %}"></script>
+<script src="{% static 'jquery-ui/ui/jquery.ui.datepicker.js' %}"></script>
+<script src="{% static 'jquery-ui/ui/jquery-ui-timepicker-addon.js' %}"></script>
+<link rel="stylesheet" href="{% static 'jquery-ui/themes/base/jquery-ui.css' %}">
+
+<script>
+
+    $(function() {
+        $( "#id_start_day" ).datepicker();
+    });
+
+    $(function() {
+        $( "#id_end_day" ).datepicker();
+    });
+
+    $(function() {
+        $( "#id_notify_day" ).datepicker();
+    });
+
+    $(function() {
+        $( "#id_start_time" ).timepicker();
+    });
+
+    $(function() {
+        $( "#id_end_time" ).timepicker();
+    });
+
+    $(function() {
+        $( "#id_notify_time" ).timepicker();
+    });
+
+</script>
+
+<form action="{% url 'iuvo_app.views.create_event_view' user.pk %}" method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form event_form %}
+
+
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "picture" %} Save
+        </button>
+    {% endbuttons %}
+</form>
 {% endblock content %}

@@ -13,6 +13,13 @@ A cool extension would be to include a fourth column that allows for deleting
 {% block content %}
 <h1>Pending Events</h1>
 
+{#
+Three parts here:
+1. A danger (red) box for alerts that have sent out messages.
+2. A success (green) box for alerts that are pending.
+3. An info (blue) box for archived alerts.
+ #}
+
 {# Shows list of past & current reminders #}
 {% if active_events %}
 <p>
@@ -42,7 +49,7 @@ A cool extension would be to include a fourth column that allows for deleting
   </tbody>
   </table>
   </div>
-</div>
+</div> {# Ends the danger box #}
 {% else %}
 <h2>Sweet, you have no active alerts!</h2>
 {% endif %}

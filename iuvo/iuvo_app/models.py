@@ -1,8 +1,4 @@
 from django.db import models
-<<<<<<< HEAD
-
-# Create your models here.
-=======
 from django.contrib.auth.models import User
 
 
@@ -31,4 +27,3 @@ class Event(models.Model):
 
     def __unicode__(self):
         return self.owner.username + "'s event ending " + str(self.end_date)
->>>>>>> jordan

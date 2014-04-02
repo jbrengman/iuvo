@@ -3,6 +3,8 @@ from django.http import Http404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from iuvo_app.models import User, Event, Contact
+from iuvo_app.forms import ContactForm, EventForm
+import datetime
 
 
 def home_view(request):
@@ -74,7 +76,58 @@ def view_event_view(request, user_id, event_id):
 
 
 def create_event_view(request, user_id):
-    pass
+    if int(user_id) != request.user.pk:
+        raise Http404
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            event = form.save(commit=False)
+            event.owner = request.user
+            event.save()
+            try:
+                event.title = form.cleaned_data.get('title')
+                event.location = form.cleaned_data.get('location')
+                event.contacts = form.cleaned_data.get('contacts')
+                event.message = form.cleaned_data.get('message')
+
+                start_date = get_date(
+                    form.cleaned_data.get('start_date'),
+                    (form.cleaned_data.get('start_time')))
+                end_date = get_date(
+                    form.cleaned_data.get('end_date'),
+                    (form.cleaned_data.get('end_time')))
+                notify_date = get_date(
+                    form.cleaned_data.get('notify_date'),
+                    (form.cleaned_data.get('notify_time')))
+
+                now = datetime.datetime.now()
+                if (  # Checking for appropriate dates.
+                        start_date < now or
+                        end_date < start_date or
+                        notify_date < end_date):
+                    raise ValueError  # Change this to a better response
+
+                event.start_date = start_date
+                event.end_date = end_date
+                event.notify_date = notify_date
+
+                event.save()
+            except:
+                event.delete()
+                redirect(create_event_view, request.user.pk)  # Add message
+            return redirect(view_event_view, request.user.pk, event.pk)
+        else:
+            redirect(create_event_view, request.user.pk)  # Add message
+    else:
+        context = {'event_form': EventForm()}
+        return render(request, 'create_event.html', context)
+
+
+def get_date(date, time):
+    time_tup = time.split(':')
+    time_ob = datetime.time(int(time_tup[0]), int(time_tup[1]))
+    date_time = datetime.datetime.combine(date, time_ob)
+    return date_time
 
 
 def edit_event_view(request, user_id, event_id):

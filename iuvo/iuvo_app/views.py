@@ -83,43 +83,42 @@ def create_event_view(request, user_id):
         if form.is_valid():
             event = form.save(commit=False)
             event.owner = request.user
-            try:
-                event.title = form.cleaned_data.get('title')
-                event.location = form.cleaned_data.get('location')
-                event.message = form.cleaned_data.get('message')
-                event.start_day = form.cleaned_data.get('start_day')
-                event.start_time = form.cleaned_data.get('start_time')
-                event.end_day = form.cleaned_data.get('end_day')
-                event.end_time = form.cleaned_data.get('end_time')
-                event.notify_day = form.cleaned_data.get('notify_day')
-                event.notify_time = form.cleaned_data.get('notify_time')
+            event.title = form.cleaned_data.get('title')
+            event.location = form.cleaned_data.get('location')
+            event.message = form.cleaned_data.get('message')
+            event.start_day = form.cleaned_data.get('start_day')
+            event.start_time = form.cleaned_data.get('start_time')
+            event.end_day = form.cleaned_data.get('end_day')
+            event.end_time = form.cleaned_data.get('end_time')
+            event.notify_day = form.cleaned_data.get('notify_day')
+            event.notify_time = form.cleaned_data.get('notify_time')
 
-                start_date = get_date(
-                    form.cleaned_data.get('start_day'),
-                    form.cleaned_data.get('start_time'))
-                end_date = get_date(
-                    form.cleaned_data.get('end_day'),
-                    form.cleaned_data.get('end_time'))
-                notify_date = get_date(
-                    form.cleaned_data.get('notify_day'),
-                    form.cleaned_data.get('notify_time'))
+            start_date = get_date(
+                form.cleaned_data.get('start_day'),
+                form.cleaned_data.get('start_time'))
+            end_date = get_date(
+                form.cleaned_data.get('end_day'),
+                form.cleaned_data.get('end_time'))
+            notify_date = get_date(
+                form.cleaned_data.get('notify_day'),
+                form.cleaned_data.get('notify_time'))
 
-                now = datetime.datetime.now()
-                if (  # Checking for appropriate dates.
-                        start_date < now or
-                        end_date < start_date or
-                        notify_date < end_date):
-                    raise ValueError  # Change this to a better response
+            now = datetime.datetime.now()
+            if (  # Checking for appropriate dates.
+                    start_date < now or
+                    end_date < start_date or
+                    notify_date < end_date):
+                raise ValueError  # Change this to a better response
 
-                event.start_date = start_date
-                event.end_date = end_date
-                event.notify_date = notify_date
+            event.start_date = start_date
+            event.end_date = end_date
+            event.notify_date = notify_date
 
-                event.save()
-                event.contacts = form.cleaned_data.get('contacts')
-                event.save()
-            except:
-                redirect(create_event_view, request.user.pk)  # Add message
+            event.status = 0
+
+            event.save()
+            event.contacts = form.cleaned_data.get('contacts')
+            event.save()
             return redirect(view_event_view, request.user.pk, event.pk)
         else:
             return redirect(create_event_view, request.user.pk)  # Add message
@@ -137,7 +136,7 @@ def edit_event_view(request, user_id, event_id):
         raise Http404
     if request.method == 'POST':
         form = EventForm(request.POST, instance=event)
-        try:
+        if form.is_valid():
             event.title = form.cleaned_data.get('title')
             event.location = form.cleaned_data.get('location')
             event.message = form.cleaned_data.get('message')
@@ -171,11 +170,8 @@ def edit_event_view(request, user_id, event_id):
             event.save()
             event.contacts = form.cleaned_data.get('contacts')
             event.save()
-        except:
-            return redirect(view_event_view, request.user.pk, event.pk)
-            # Add error message/handle this better.
         else:
-            return redirect(create_event_view, request.user.pk)
+            return redirect(view_event_view, request.user.pk, event.pk)
             # Add error message/handle this better.
     else:
         context = {'event_form': EventForm(instance=event)}

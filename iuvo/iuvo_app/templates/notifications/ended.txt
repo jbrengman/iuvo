@@ -1,0 +1,9 @@
+{% extends "notifications/email.txt" %}
+
+{% block body %}
+Hello, {{ first_name }} {{ last_name }}
+
+The event which you've scheduled at Iuvo.com has ended.  Please, log into Iuvo.com and submit a check-in for your event.
+
+http://{{ site.domain }}
+{% endblock %}

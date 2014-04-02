@@ -2,6 +2,9 @@ from models import Contact, Event
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.mail import send_mail
+from django.template import loader
+# from django.template.loader import get_template
+from django.template import Context
 
 
 def send_notifications():
@@ -14,18 +17,16 @@ def send_notifications():
         if now > event.notify_date:
             # send notification to user's contacts.
             contacts = Contact.objects.filter(owner=event.owner)
-            eddress_list = []
+            # subject = "YOUR FRIEND MAY NEED HELP!!"
             for contact in contacts:
-                eddress_list.append(contact.email)
-            subject = "YOUR FRIEND MAY NEED HELP!!"
-            body = """You are receiving this email, because a friend has assigned
-                      you as an emergency contact at Iuvo.com.  They have scheduled an
-                      event which is past its end time, and they have not checked in.
-                      Please try to contact your friend to see if they are safe.  Thank you.
-
-                      Regards,
-                      Iuvo Staff"""
-            send_email(eddress_list, subject, body)
+                eddress_list = [contact.email]
+                body_template = loader.get_template('notifications/notify_contacts.txt')
+                body_context = Context({})
+                body = body_template.render(body_context)
+                subject_template = loader.get_template('notifications/contacts_email_subject.txt')
+                subject_context = Context({})
+                subject = subject_template.render(subject_context)
+                send_email(eddress_list, subject, body)
             event.status = 3
             event.save()
 
@@ -33,12 +34,13 @@ def send_notifications():
         if now > event.end_date:
             # send notification to user asking them to check in.
             eddress_list = [event.owner.email]
-            subject = "Iuvo event notice"
-            body = """The event which you've scheduled at Iuvo.com has ended.
-                      Please, log into Iuvo.com and submit a check-in for your event.
-
-                      Regards,
-                      Iuvo Staff"""
+            # subject = "Iuvo event notice"
+            body_template = loader.get_template('notifications/ended.txt')
+            body_context = Context({'first_name': event.owner.first_name, 'last_name': event.owner.last_name})
+            body = body_template.render(body_context)
+            subject_template = loader.get_template('notifications/user_email_subject.txt')
+            subject_context = Context({})
+            subject = subject_template.render(subject_context)
             send_email(eddress_list, subject, body)
             event.status = 2
             event.save()
@@ -46,15 +48,15 @@ def send_notifications():
     for event in events_pre:
         if now > event.start_date:
             # send notification to user telling them that event has started.
-            eddress = [event.owner.email]
-            subject = "Iuvo event notice"
-            body = """The event which you've scheduled at Iuvo.com has started.
-                      If you've canceled your plans, Please log into your account
-                      and cancel the event.
-
-                      Regards,
-                      Iuvo Staff"""
-            send_email(eddress, subject, body)
+            eddress_list = [event.owner.email]
+            # subject = "Iuvo event notice"
+            body_template = loader.get_template('notifications/started.txt')
+            body_context = Context({'first_name': event.owner.first_name, 'last_name': event.owner.last_name})
+            body = body_template.render(body_context)
+            subject_template = loader.get_template('notifications/user_email_subject.txt')
+            subject_context = Context({})
+            subject = subject_template.render(subject_context)
+            send_email(eddress_list, subject, body)
             event.status = 1
             event.save()
 
@@ -68,27 +70,29 @@ def send_3day_notifications():
         delta = now - event.end_date
         if delta.days % 3 == 0:
             eddress_list = [event.owner.email]
-            subject = "Iuvo event notice"
-            body = """You had scheduled an event at Iuvo.com.  It is now 3 days past
-                      the end time for this event.  Please, log into your account and
-                      check-in or your account will be suspended.  Thank you.
-
-                      Regards,
-                      Iuvo Staff"""
+            # subject = "Iuvo event notice"
+            body_template = loader.get_template('notifications/late_checkin_email.txt')
+            body_context = Context({'first_name': event.owner.first_name, 'last_name': event.owner.last_name, 'late': delta.days})
+            body = body_template.render(body_context)
+            subject_template = loader.get_template('notifications/user_email_subject.txt')
+            subject_context = Context({})
+            subject = subject_template.render(subject_context)
             send_email(eddress_list, subject, body)
 
     for event in events_notified:
         delta = now - event.end_date
+        delta_min = delta.seconds / 60
         # if delta.seconds / 60 > 3:
         if delta.days > 3:
             eddress_list = [event.owner.email]
-            subject = "Iuvo event notice"
-            body = """You had scheduled an event at Iuvo.com.  It is now 3 days past
-                      the end time for this event.  Please, log into your account and
-                      check-in or your account will be suspended.  Thank you.
-
-                      Regards,
-                      Iuvo Staff"""
+            # subject = "Iuvo event notice"
+            body_template = loader.get_template('notifications/late_checkin_email.txt')
+            body_context = Context({'first_name': event.owner.first_name, 'last_name': event.owner.last_name, 'late': delta.days})
+            # body_context = Context({'first_name': event.owner.first_name, 'last_name': event.owner.last_name, 'late': delta_min})
+            body = body_template.render(body_context)
+            subject_template = loader.get_template('notifications/user_email_subject.txt')
+            subject_context = Context({})
+            subject = subject_template.render(subject_context)
             send_email(eddress_list, subject, body)
             event.status = 4
             event.save()

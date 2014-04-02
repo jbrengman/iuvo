@@ -1,0 +1,9 @@
+{% extends "notifications/email.txt" %}
+
+{% block body %}
+Hello, {{ first_name }} {{ last_name }}
+
+The event which you've scheduled at Iuvo.com has started. If you've canceled your plans, Please log into your account and cancel the event.
+
+http://{{ site.domain }}
+{% endblock %}

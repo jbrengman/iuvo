@@ -99,11 +99,16 @@ class Base(Configuration):
 
     STATIC_URL = '/static/'
 
+    TEMPLATE_CONTEXT_PROCESSORS = (
+        'django.contrib.messages.context_processors.messages',
+        'django.contrib.auth.context_processors.auth')
+
     # run "python manage.py crontab add" to add jobs to crontab
     # run "python manage.py crontab remove" to remove jobs
     CRONJOBS = [
-        ('*/1 * * * *', 'iuvo_app.cron.send_notifications'),
-        ('*/5 * * * *', 'iuvo_app.cron.send_3day_notifications'),
+        # ('*/1 * * * *', 'iuvo_app.cron.send_with_username'),
+        # ('*/1 * * * *', 'iuvo_app.cron.send_notifications'),
+        ('*/1 * * * *', 'iuvo_app.cron.send_3day_notifications'),
     ]
 
 

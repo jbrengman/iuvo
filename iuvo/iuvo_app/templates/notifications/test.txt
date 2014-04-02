@@ -1,0 +1,10 @@
+{% extends "notifications/email.txt" %}
+
+{% block body %}
+You are receiving this email, because a friend has assigned
+you as an emergency contact at Iuvo.com.  They have scheduled an
+event which is past its end time, and they have not checked in.
+Please try to contact your friend to see if they are safe.  Thank you.
+
+http://{{ site.domain }}
+{% endblock %}

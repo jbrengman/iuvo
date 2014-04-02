@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_javascript %}
+{% bootstrap_css %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+
+
+<title>{% block title %}{% endblock title %} - iuvo</title>
+
+<div class="container">
+    <head>
+        <h2>
+            {% block head %}{% endblock head %}
+        </h2>
+    </head>
+</div>
+
+<div class="container"
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+</div>
+</html>

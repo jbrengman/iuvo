@@ -4,7 +4,7 @@
 {% bootstrap_javascript %}
 {% block title %}
 contacts - super(())
-{% endblock %}
+{% endblock title %}
 {% block content %}
 <h1>Your Contacts</h1>
 <p>Below are the people you have added as emergency contacts. Click on a
@@ -29,4 +29,4 @@ name: {{ contact.name }}</a></td>
     </tr>
 {% endfor %}
 </tbody>
-{% endblock %}
+{% endblock content %}

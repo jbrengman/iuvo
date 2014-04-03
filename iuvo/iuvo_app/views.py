@@ -43,31 +43,31 @@ def events_list_view(request, user_id):
     context = {'upcoming_events': upcoming_events,
                'ongoing_events': ongoing_events,
                'past_events': past_events,
-               'title': 'All events'}
+               'title': 'Your events'}
     return render(request, 'iuvo_app/events_list.html', context)
 
 
 def events_upcoming_view(request, user_id):
     if int(user_id) != request.user.pk:
         raise Http404
-    events = Event.objects.filter(owner__pk=user_id, status=0)
-    context = {'events': events, 'title': 'Upcoming events'}
+    upcoming_events = Event.objects.filter(owner__pk=user_id, status=0)
+    context = {'upcoming_events': upcoming_events, 'title': 'Upcoming events'}
     return render(request, 'iuvo_app/events_list.html', context)
 
 
 def events_current_view(request, user_id):
     if int(user_id) != request.user.pk:
         raise Http404
-    events = Event.objects.filter(owner__pk=user_id, status__gte=1)
-    context = {'events': events, 'title': 'Ongoing events'}
+    ongoing_events = Event.objects.filter(owner__pk=user_id, status__gte=1)
+    context = {'ongoing_events': ongoing_events, 'title': 'Ongoing events'}
     return render(request, 'iuvo_app/events_list.html', context)
 
 
 def events_past_view(request, user_id):
     if int(user_id) != request.user.pk:
         raise Http404
-    events = Event.objects.filter(owner__pk=user_id).filter(status=-1)
-    context = {'events': events, 'title': 'Past events'}
+    past_events = Event.objects.filter(owner__pk=user_id).filter(status=-1)
+    context = {'past_events': past_events, 'title': 'Past events'}
     return render(request, 'iuvo_app/events_list.html', context)
 
 

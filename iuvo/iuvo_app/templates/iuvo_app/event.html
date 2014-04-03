@@ -12,9 +12,9 @@
 {% block content %}
 <h1>{{ event.title }}</h1>
 <h4>title:</h4> {{ event.title }}<br>
-<h4>start:</h4> {{ event.start_date }}<br>
-<h4>end:</h4> {{ event.end_date }}<br>
-<h4>notify:</h4> {{ event.notify_date }}<br>
+<h4>start:</h4> {{ event.start_day }} {{event.start_time }}<br>
+<h4>end:</h4> {{ event.end_day }} {{event.end_time }}<br>
+<h4>notify:</h4> {{ event.notify_day }} {{ event.notify_time }}<br>
 <h4>location:</h4> {{ event.location }}<br>
 <h4>message:</h4> {{ event.message }}<br>
 <h4>status:</h4> {{ event.status }}<br>

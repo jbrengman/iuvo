@@ -126,6 +126,7 @@ class Base(Configuration):
         # ('*/1 * * * *', 'iuvo_app.cron.send_with_username'),
         ('*/1 * * * *', 'iuvo_app.cron.send_notifications'),
         ('*/1 * * * *', 'iuvo_app.cron.send_3day_notifications'),
+        # ('*/1 * * * *', 'iuvo_app.cron.test'),
     ]
 
 

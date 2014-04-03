@@ -109,7 +109,7 @@ class Base(Configuration):
 
     LOGIN_URL = 'login'
     LOGOUT_URL = 'logout'
-    LOGIN_REDIRECT_URL = '/main'
+    LOGIN_REDIRECT_URL = '/'
 
      # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/1.6/howto/static-files/

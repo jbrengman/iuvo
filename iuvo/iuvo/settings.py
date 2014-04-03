@@ -67,6 +67,16 @@ class Base(Configuration):
 
     ROOT_URLCONF = 'iuvo.urls'
 
+    BOOTSTRAP3 = {
+    'jquery_url': '/static/jquery.min.js',
+    'base_url': '//netdna.bootstrapcdn.com/bootstrap/3.0.3/',
+    'css_url': '/static/bootstrap.css',
+    'theme_url': None,
+    'javascript_url': None,
+    'horizontal_label_class': 'col-md-2',
+    'horizontal_field_class': 'col-md-4',
+}
+
     WSGI_APPLICATION = 'iuvo.wsgi.application'
 
     # Database

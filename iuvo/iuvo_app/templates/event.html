@@ -21,9 +21,8 @@ notify: {{ event.notify_date }}<br>
 location: {{ event.location }}<br>
 message: {{ event.message }}<br>
 status: {{ event.status }}<br>
-contacts: 
+contacts:
     {% for contact in event.contacts.all %}
     {{ contact.name}}/{{ contact.email }},
     {% endfor %}
-<br><br>
 {% endblock content %}

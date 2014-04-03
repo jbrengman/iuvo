@@ -143,17 +143,18 @@ def edit_event_view(request, user_id, event_id):
         raise Http404
     if request.method == 'POST':
         form = EventForm(request.POST, instance=event)
+        # import pdb; pdb.set_trace()
         if form.is_valid():
-            event.title = form.cleaned_data.get('title')
-            event.location = form.cleaned_data.get('location')
-            event.message = form.cleaned_data.get('message')
-            event.start_day = form.cleaned_data.get('start_day')
-            event.start_time = form.cleaned_data.get('start_time')
-            event.end_day = form.cleaned_data.get('end_day')
-            event.end_time = form.cleaned_data.get('end_time')
-            event.notify_day = form.cleaned_data.get('notify_day')
-            event.notify_time = form.cleaned_data.get('notify_time')
-
+            # event.title = form.cleaned_data.get('title')
+            # event.location = form.cleaned_data.get('location')
+            # event.message = form.cleaned_data.get('message')
+            # event.start_day = form.cleaned_data.get('start_day')
+            # event.start_time = form.cleaned_data.get('start_time')
+            # event.end_day = form.cleaned_data.get('end_day')
+            # event.end_time = form.cleaned_data.get('end_time')
+            # event.notify_day = form.cleaned_data.get('notify_day')
+            # event.notify_time = form.cleaned_data.get('notify_time')
+            event = form.save(commit=False)
             start_date = get_date(
                 form.cleaned_data.get('start_day'),
                 form.cleaned_data.get('start_time'))
@@ -175,13 +176,15 @@ def edit_event_view(request, user_id, event_id):
             event.notify_date = notify_date
 
             event.save()
-            event.contacts = form.cleaned_data.get('contacts')
-            event.save()
+            form.save_m2m()
+            # event.contacts = form.cleaned_data.get('contacts')
+            # event.save()
+            return redirect(events_list_view, request.user.pk)
         else:
-            return redirect(view_event_view, request.user.pk, event.pk)
+            return redirect(edit_event_view, request.user.pk, event.pk)
             # Add error message/handle this better.
     else:
-        context = {'event_form': EventForm(instance=event)}
+        context = {'event_form': EventForm(instance=event), 'event': event}
         return render(request, 'iuvo_app/edit_event.html', context)
 
 

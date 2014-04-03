@@ -12,7 +12,7 @@ urlpatterns = patterns(
     url(r'^about/$', 'about_view', name='about'),
 
     url(r'^(\d+)/$', 'dashboard_view', name='dashboard'),
-    url(r'^(\d+)/events/(\d+)/checkin/$', 'dashboard_view', name='dashboard'),
+    url(r'^(\d+)/events/(\d+)/checkin/$', 'check_in_view', name='checkin'),
 
     url(r'^(\d+)/events/new/$', 'create_event_view', name='create_event'),
     url(r'^(\d+)/events/(\d+)/$', 'view_event_view', name='view_event'),

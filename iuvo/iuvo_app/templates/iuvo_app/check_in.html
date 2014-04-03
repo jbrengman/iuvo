@@ -4,13 +4,8 @@
 
 
 {% block title %}
-Check In super(())
+Check In - iuvō
 {% endblock title %}
-
-
-{% block head %}
-
-{% endblock head %}
 
 
 {% block content %}
@@ -31,7 +26,7 @@ Check In super(())
   <tbody>
     <tr class="danger">
       <td>1</td>
-      <td>{{ event.title }}</td>
+      <td>{{iuvo_app.views.view_event_current_view}}{{ event.title }}</td>
       <td>{{ event.start_date }}</td>
       <td>{{ event.end_date }}</td>
       <td>{{ event.notify_date }}</td>

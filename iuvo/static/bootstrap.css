@@ -302,9 +302,8 @@ a:focus {
   outline-offset: -2px;
 }
 footer {
-  background-color:rgba(237,240,241,1);
+  /*background-color:rgba(237,240,241,1);*/
   margin-top: 10px;
-  padding-left: 10px;
 }
 }
 figure {

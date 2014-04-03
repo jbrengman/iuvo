@@ -2,16 +2,17 @@
 <html lang="en">
 
 {% load bootstrap3 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_javascript %}
-{% bootstrap_css %}
+{% load staticfiles %}
 
 
 <head>
-    <link rel="stylesheet" href="style.css" />
     <title>{% block title %} - don't worry: iuvo!{% endblock %}</title>
+    {# Load CSS and JavaScript #}
+<script src="{% static 'jquery.min.js' %}" type="text/javascript"></script>
+{% bootstrap_javascript %}
+{% bootstrap_css %}
 </head>
+<body>
 {% block navbar %}
 <div class="navbar navbar-inverse">
   <div class="navbar-header">
@@ -30,12 +31,12 @@
 
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Control <b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% bootstrap_icon "user" %} User Control <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="/user/">{% bootstrap_icon "user" %} Home</a></li>
-          <li><a href="/new/">{% bootstrap_icon "plus" %} New Event</a></li>
-          <li><a href="/new/">{% bootstrap_icon "list-alt" %} Events</a></li>
-          <li><a href="/new/">{% bootstrap_icon "earphone" %} Contacts</a></li>
+          <li><a href="/user/">{% bootstrap_icon "home" %}  Home</a></li>
+          <li><a href="/new/">{% bootstrap_icon "plus" %}  New Event</a></li>
+          <li><a href="/new/">{% bootstrap_icon "list-alt" %}  Events</a></li>
+          <li><a href="/new/">{% bootstrap_icon "earphone" %}  Contacts</a></li>
           <li class="divider"></li>
           <li><a href="#">{% bootstrap_icon "log-out" %} Log Out</a></li>
         </ul>
@@ -47,7 +48,6 @@
 {% endblock %}
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
-<body>
     <div id="content">
         {% block content %}{% endblock %}
     </div>
@@ -55,6 +55,7 @@
 iuvō – made in seattle for <a href="http://codefellows.org">code fellows</a><br />
 ©2014
 </footer>
+
 </body>
 
 </html>

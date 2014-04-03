@@ -32,7 +32,7 @@
       <td>{% for contact in event.contacts.all %}
           {{ contact.name}} - {{ contact.email }}<br />
           {% endfor %}
-      <td><a href="#"><button type="button" class="btn btn-success">Check In</button></a></td>
+      <td><a href="#"><button type="button" class="btn btn-success btn-xs">Check In</button></a></td>
 </div>
     </tr>
   {% endfor %}
@@ -67,7 +67,7 @@
       <td>{% for contact in event.contacts.all %}
           {{ contact.name}} - {{ contact.email }}<br />
           {% endfor %}
-      <td><a href="{% url 'iuvo_app.views.edit_event_view' user.pk event.pk %}"><button type="button" class="btn btn-success">Edit Event</button></a></td>
+      <td><a href="{% url 'iuvo_app.views.edit_event_view' user.pk event.pk %}"><button type="button" class="btn btn-success btn-xs">Edit Event</button></a></td>
     </tr>
   {% endfor %}
   </tbody>
@@ -101,7 +101,7 @@
       <td>{% for contact in event.contacts.all %}
           {{ contact.name}} - {{ contact.email }}<br />
           {% endfor %}
-      <td><a href="{% url 'iuvo_app.views.edit_event_view' user.pk event.pk %}"><button type="button" class="btn btn-success">Edit Event</button></a></td>
+      <td><a href="{% url 'iuvo_app.views.edit_event_view' user.pk event.pk %}"><button type="button" class="btn btn-success btn-xs">Edit Event</button></a></td>
     </tr>
   {% endfor %}
   </tbody>

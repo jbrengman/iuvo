@@ -13,7 +13,7 @@ def home_view(request):
 
 
 def login_view(request):
-    login_form = LoginForm()
+    login_form = LoginFxorm()
     context = {'form': login_form}
     return render(request, 'registration/login.html', context)
 
@@ -37,8 +37,13 @@ def check_in_view(request, user_id, event_id):
 def events_list_view(request, user_id):
     if int(user_id) != request.user.pk:
         raise Http404
-    events = Event.objects.filter(owner__pk=user_id)
-    context = {'events': events, 'title': 'All events'}
+    upcoming_events = Event.objects.filter(owner__pk=user_id, status=0)
+    ongoing_events = Event.objects.filter(owner__pk=user_id, status__gte=1)
+    past_events = Event.objects.filter(owner__pk=user_id).filter(status=-1)
+    context = {'upcoming_events': upcoming_events,
+               'ongoing_events': ongoing_events,
+               'past_events': past_events,
+               'title': 'All events'}
     return render(request, 'iuvo_app/events_list.html', context)
 
 

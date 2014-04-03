@@ -27,7 +27,7 @@
   {% for event in ongoing_events %}
     <tr>
       <td><a href="{% url 'iuvo_app.views.view_event_view' user.pk event.pk %}">{{ event.title }}</a></td>
-      <td>{{ event.notify_date }}</td>
+      <td>{{ event.notify_day }} {{ event.notify_time }}</td>
       <td>{{ event.location }}</td>
       <td>{% for contact in event.contacts.all %}
           {{ contact.name}} - {{ contact.email }}<br />
@@ -62,7 +62,7 @@
   {% for event in upcoming_events %}
     <tr>
       <td><a href="{% url 'iuvo_app.views.view_event_view' user.pk event.pk %}">{{ event.title }}</a></td>
-      <td>{{ event.notify_date }}</td>
+      <td>{{ event.notify_day }} {{ event.notify_time }}</td>
       <td>{{ event.location }}</td>
       <td>{% for contact in event.contacts.all %}
           {{ contact.name}} - {{ contact.email }}<br />
@@ -96,7 +96,7 @@
   {% for event in past_events %}
     <tr>
       <td><a href="{% url 'iuvo_app.views.view_event_view' user.pk event.pk %}">{{ event.title }}</a></td>
-      <td>{{ event.notify_date }}</td>
+      <td>{{ event.notify_day }} {{ event.notify_time }}</td>
       <td>{{ event.location }}</td>
       <td>{% for contact in event.contacts.all %}
           {{ contact.name}} - {{ contact.email }}<br />

@@ -33,7 +33,7 @@
           <li><a href={% url 'iuvo_app.views.create_event_view' user.pk%}>{% bootstrap_icon "plus" %}  New Event</a></li>
           <li><a href={% url 'iuvo_app.views.contacts_list_view' user.pk%}>{% bootstrap_icon "earphone" %}  Contacts</a></li>
           <li class="divider"></li>
-          <li><a href="#">{% bootstrap_icon "log-out" %} Log Out</a></li>
+          <li><a href="/logout/">{% bootstrap_icon "log-out" %} Log Out</a></li>
         </ul>
       </li>
     </ul>

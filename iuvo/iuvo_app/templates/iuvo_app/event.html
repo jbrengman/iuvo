@@ -34,4 +34,6 @@
   {% endfor %}
   </tbody>
   </table>
+  <a href="{% url 'iuvo_app.views.check_in_view' user.pk event.pk %}"><button type="button" class="btn btn-danger">Check in to this event</button></a>
+  <br>Note: Checking in will stop alerts from being sent for this event.
 {% endblock content %}

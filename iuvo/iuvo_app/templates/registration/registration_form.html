@@ -3,7 +3,7 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 {% block content %}
-{% if not user %}
+{% if not user.is_authenticated %}
 <div style="max-width:600px;margin-left:auto;margin-right:auto;">
     <h1>Register</h1>
     <form action="/accounts/register/" method="post" class="form">

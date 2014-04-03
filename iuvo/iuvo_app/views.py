@@ -224,9 +224,9 @@ def create_contact_view(request, user_id):
             else:
                 return redirect(create_contact_view, request.user.pk)
         except:
+            messages.add_message(request, messages.INFO, "Your form didn't validate. Please check it and try again.")
             return redirect(create_contact_view, request.user.pk)
     else:
-        messages.add_message(request, messages.INFO, "Your form didn't validate. Please check it and try again.")
         context = {'contact_form': ContactForm()}
         return render(request, 'iuvo_app/create_contact.html', context)
 

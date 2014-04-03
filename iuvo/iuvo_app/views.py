@@ -16,7 +16,7 @@ def home_view(request):
 
 
 def login_view(request):
-    login_form = LoginFxorm()
+    login_form = LoginForm()
     context = {'form': login_form}
     return render(request, 'registration/login.html', context)
 
@@ -34,7 +34,19 @@ def dashboard_view(request, user_id):
 
 
 def check_in_view(request, user_id, event_id):
-    pass
+    if int(user_id) != request.user.pk:
+        raise Http404
+    try:
+        event = Event.objects.get(pk=event_id)
+    except Event.DoesNotExist:
+        raise Http404
+    event.status = -1
+    event.save()
+    messages.add_message(
+        request, messages.INFO,
+        'You have been successfully checked in to the event "'
+        + event.title + '"')
+    return redirect(events_list_view, user_id)
 
 
 def events_list_view(request, user_id):

@@ -7,6 +7,7 @@ Edit event
 {% block head %}
 Edit event
 {% endblock head %}
+
 /* css for timepicker */
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
 .ui-timepicker-div dl { text-align: left; }
@@ -21,7 +22,7 @@ Edit event
 .ui-timepicker-rtl dl dd { margin: 0 45% 10px 10px; }
 
 {% block content %}
-
+<h1>Edit your event below.</h1>
 
 
 <script src="{% static 'jquery.js' %}"></script>
@@ -59,7 +60,7 @@ Edit event
 
 </script>
 
-<form action="{% url 'iuvo_app.views.create_event_view' user.pk %}" method="post" class="form">
+<form action="{% url 'iuvo_app.views.edit_event_view' user.pk event.pk %}" method="post" class="form">
     {% csrf_token %}
     {% bootstrap_form event_form %}
 

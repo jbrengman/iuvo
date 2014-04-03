@@ -4,25 +4,35 @@
 
 
 {% block title %}
-{{ event.title }}
+{{ event.title }} - iuvō
 {% endblock title %}
 
 
-{% block head %}
-{{ event.title }}
-{% endblock head %}
-
 
 {% block content %}
-<strong>title:</strong> {{ event.title }}<br>
-<strong>start:</strong> {{ event.start_date }}<br>
-<strong>end:</strong> {{ event.end_date }}<br>
-<strong>notify:</strong> {{ event.notify_date }}<br>
-<strong>location:</strong> {{ event.location }}<br>
-<strong>message:</strong> {{ event.message }}<br>
-<strong>status:</strong> {{ event.status }}<br>
-<strong>contacts:</strong>
-    {% for contact in event.contacts.all %}
-    {{ contact.name}}/{{ contact.email }},
-    {% endfor %}
+<h1>{{ event.title }}</h1>
+<h4>title:</h4> {{ event.title }}<br>
+<h4>start:</h4> {{ event.start_date }}<br>
+<h4>end:</h4> {{ event.end_date }}<br>
+<h4>notify:</h4> {{ event.notify_date }}<br>
+<h4>location:</h4> {{ event.location }}<br>
+<h4>message:</h4> {{ event.message }}<br>
+<h4>status:</h4> {{ event.status }}<br>
+<h4>contacts:</h4>
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>E-mail</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for contact in event.contacts.all %}
+    <tr>
+      <td>{{ contact.name }}</td>
+      <td>{{ contact.email }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+  </table>
 {% endblock content %}

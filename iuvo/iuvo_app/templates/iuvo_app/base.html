@@ -23,20 +23,15 @@
     </button>
     <a class="navbar-brand" href="/">iuvō</a>
   </div>
+  {% if user.is_authenticated %}
   <div class="navbar-collapse collapse navbar-inverse-collapse">
-    <ul class="nav navbar-nav">
-      <li><a href="/about">about</a></li>
-      <li><a href="/register">register</a></li>
-    </ul>
-
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% bootstrap_icon "user" %} User Control <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="/user/">{% bootstrap_icon "home" %}  Home</a></li>
-          <li><a href="/new/">{% bootstrap_icon "plus" %}  New Event</a></li>
-          <li><a href="/new/">{% bootstrap_icon "list-alt" %}  Events</a></li>
-          <li><a href="/new/">{% bootstrap_icon "earphone" %}  Contacts</a></li>
+          <li><a href={% url 'iuvo_app.views.events_list_view' user.pk%}>{% bootstrap_icon "list-alt" %}  Events</a></li>
+          <li><a href={% url 'iuvo_app.views.create_event_view' user.pk%}>{% bootstrap_icon "plus" %}  New Event</a></li>
+          <li><a href={% url 'iuvo_app.views.contacts_list_view' user.pk%}>{% bootstrap_icon "earphone" %}  Contacts</a></li>
           <li class="divider"></li>
           <li><a href="#">{% bootstrap_icon "log-out" %} Log Out</a></li>
         </ul>
@@ -45,17 +40,26 @@
   </div>
 </div>
 
+  {% else %}
+      <div class="navbar-collapse collapse navbar-inverse-collapse">
+    <ul class="nav navbar-nav">
+      <li><a href="/accounts/register">{% bootstrap_icon "thumbs-up" %} Register</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+          <li><a href="/login/">{% bootstrap_icon "log-in" %} Login</a></li>
+    </ul>
+  </div>
+</div>
+  {% endif %}
+
 {% endblock %}
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
-<footer>
-iuvō – made in seattle for <a href="http://codefellows.org">code fellows</a><br />
-©2014
-</footer>
-
+<div class="col-md-12">
+  <div id="content">
+      {% block content %}{% endblock %}
+  </div>
+</div>
 </body>
 
 </html>

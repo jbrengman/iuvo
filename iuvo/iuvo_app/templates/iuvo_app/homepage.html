@@ -5,23 +5,31 @@
 {% block content %}
  <div class="jumbotron">
     <div class="container">
-      <h1>Out The Door With Peace of Mind</h1>
-      <p class="lead">A solo hike? A first date? Automatically let your friends know if things take an unexpected turn.</p>
+      <center><h1>Leave The House <br />
+      With Peace of Mind</h1></center>
+      <center><p class="lead">A solo hike? A first date? Automatically let your friends know if things take an unexpected turn.</p></center>
+      {% if user.is_authenticated %}
+      <a class="btn btn-danger btn-lg btn-block" href={% url 'iuvo_app.views.events_list_view' user.pk%}>Manage Your Reminders!</a>
+      {% else %}
       <a class="btn btn-info btn-lg btn-block" href="accounts/register/">Get Started Now!</a>
+      {% endif %}
     </div>
   </div>
+  <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2 class="panel-title">Put your worries to rest in three steps:</h3>
+  </div>
+  <div class="panel-body">
   <div class="container">
-  <h2>How It Works</h2>
-  <p><h3>iuvō (Latin for 'I help!') automatically contacts people you trust if you don't make it home on time.</h3>
   <div class="row">
     <div class="col-md-4">
-      <p><h3>1. Register and Set Contacts</h3><br />
+      <p><h3>1. Set Contacts</h3><br />
 After signing up for the service, go to the Add Contacts page
  and enter the names and email addresses of some trusted friends. (Don't worry; we'll never spam them or share their contact info with anyone.
  Scout's honor!)</p>
     </div>
     <div class="col-md-4">
-      <p><h3>2. Flying Solo? Set Up An Alert!</h3><br />
+      <p><h3>2. Set Up An Alert</h3><br />
 Before you leave for that solo trek of the Appalachian trail, just enter when you're leaving, when you're going to come back, and a message. If you get held up and don't turn off the notification before a specific time, your message will automatically be sent to the contacts you selected.</p>
     </div>
     <div class="col-md-4">
@@ -31,5 +39,6 @@ Before you leave for that solo trek of the Appalachian trail, just enter when yo
     </div>
   </div>
 </div>
-
+</div>
+</div>
 {% endblock content %}

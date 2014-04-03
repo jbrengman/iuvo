@@ -107,6 +107,10 @@ class Base(Configuration):
 
     USE_TZ = True
 
+    LOGIN_URL = 'login'
+    LOGOUT_URL = 'logout'
+    LOGIN_REDIRECT_URL = '/main'
+
      # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
@@ -120,7 +124,7 @@ class Base(Configuration):
     # run "python manage.py crontab remove" to remove jobs
     CRONJOBS = [
         # ('*/1 * * * *', 'iuvo_app.cron.send_with_username'),
-        # ('*/1 * * * *', 'iuvo_app.cron.send_notifications'),
+        ('*/1 * * * *', 'iuvo_app.cron.send_notifications'),
         ('*/1 * * * *', 'iuvo_app.cron.send_3day_notifications'),
     ]
 

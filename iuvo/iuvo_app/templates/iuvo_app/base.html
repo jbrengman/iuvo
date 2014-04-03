@@ -24,8 +24,17 @@
     <a class="navbar-brand" href="/">iuvō</a>
   </div>
   <div class="navbar-collapse collapse navbar-inverse-collapse">
+  {% if not request.user.is_authenticated %}
     <ul class="nav navbar-nav">
-      <li><a href="/about">about</a></li>
+      <li><a href="/register">{% bootstrap_icon "thumbs-up" %} register</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+          <li><a href="/login/">{% bootstrap_icon "log-in" %} Login</a></li>
+    </ul>
+  </div>
+</div>
+  {% else %}
+      <ul class="nav navbar-nav">
       <li><a href="/register">register</a></li>
     </ul>
 
@@ -44,6 +53,7 @@
     </ul>
   </div>
 </div>
+  {% endif %}
 
 {% endblock %}
 {# Display django.contrib.messages as Bootstrap alerts #}

@@ -5,6 +5,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from iuvo_app.models import Event, Contact
 from iuvo_app.forms import ContactForm, EventForm
 import datetime
+import pytz
+from django.utils import timezone
 
 
 def home_view(request):
@@ -94,18 +96,22 @@ def create_event_view(request, user_id):
             event.end_time = form.cleaned_data.get('end_time')
             event.notify_day = form.cleaned_data.get('notify_day')
             event.notify_time = form.cleaned_data.get('notify_time')
+            tz = form.cleaned_data.get('timezone')
 
             start_date = get_date(
                 form.cleaned_data.get('start_day'),
-                form.cleaned_data.get('start_time'))
+                form.cleaned_data.get('start_time'),
+                tz)
             end_date = get_date(
                 form.cleaned_data.get('end_day'),
-                form.cleaned_data.get('end_time'))
+                form.cleaned_data.get('end_time'),
+                tz)
             notify_date = get_date(
                 form.cleaned_data.get('notify_day'),
-                form.cleaned_data.get('notify_time'))
+                form.cleaned_data.get('notify_time'),
+                tz)
 
-            now = datetime.datetime.now()
+            now = timezone.now()
             if (  # Checking for appropriate dates.
                     start_date < now or
                     end_date < start_date or
@@ -254,12 +260,13 @@ def view_contact_view(request, user_id, contact_id):
 
 # Helper methods
 
-def get_date(date, time):
+def get_date(date, time, timezone):
+    tz = pytz.timezone(timezone)
     datesplit = date.split('/')
     date_ob = datetime.date(
         int(datesplit[2]), int(datesplit[0]), int(datesplit[1]))
     time_tup = time.split(':')
-    time_ob = datetime.time(int(time_tup[0]), int(time_tup[1]))
+    time_ob = datetime.time(int(time_tup[0]), int(time_tup[1]), tzinfo=tz)
     date_time = datetime.datetime.combine(date_ob, time_ob)
     return date_time
 

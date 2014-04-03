@@ -13,7 +13,9 @@ def home_view(request):
 
 
 def login_view(request):
-    pass
+    login_form = LoginForm()
+    context = {'form': login_form}
+    return render(request, 'registration/login.html', context)
 
 
 def register_view(request):

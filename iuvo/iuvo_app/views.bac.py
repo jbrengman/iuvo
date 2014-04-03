@@ -5,9 +5,12 @@ from django.contrib.auth.forms import AuthenticationForm
 from iuvo_app.models import Event, Contact
 from iuvo_app.forms import ContactForm, EventForm
 import datetime
+<<<<<<< HEAD
 import pytz
 from django.utils import timezone
+=======
 from django.contrib import messages
+>>>>>>> luke-work-2
 
 
 def home_view(request):

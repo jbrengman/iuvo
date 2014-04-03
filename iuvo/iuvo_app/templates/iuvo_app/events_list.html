@@ -4,7 +4,7 @@
 
 
 {% block title %}
-{{ title }}
+current events - iuvō
 {% endblock title %}
 
 
@@ -15,7 +15,7 @@
 
 {% block content %}
 <h1>Current Events</h1>
-  <div class="panel panel-success">
+  <div class="panel panel-info">
   <div class="panel-heading">
     <h3 class="panel-title">The following events are currently counting down:</h3>
   </div>
@@ -32,9 +32,9 @@
   <tbody>
   {% for event in events %}
     <tr>
-      <td><a href="{% url 'iuvo_app.views.view_event_view' user.pk event.pk %}">{{ event.name }}</a></td>
-      <td>{{ event.time }}</td>
-      <td>{{ event.place }}</td>
+      <td><a href="{% url 'iuvo_app.views.view_event_view' user.pk event.pk %}">{{ event.title }}</a></td>
+      <td>{{ event.notify_date }}</td>
+      <td>{{ event.location }}</td>
       <td>{% for contact in event.contacts.all %}
           {{ contact.name}}/{{ contact.email }},
           {% endfor %}

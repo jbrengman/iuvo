@@ -1,4 +1,4 @@
-{% extends 'iuvo_app/temp_base.html' %}
+{% extends 'iuvo_app/base.html' %}
 {% load bootstrap3 %}
 
 
@@ -14,14 +14,14 @@
 
 
 {% block content %}
-title: {{ event.title }}<br>
-start: {{ event.start_date }}<br>
-end: {{ event.end_date }}<br>
-notify: {{ event.notify_date }}<br>
-location: {{ event.location }}<br>
-message: {{ event.message }}<br>
-status: {{ event.status }}<br>
-contacts:
+<strong>title:</strong> {{ event.title }}<br>
+<strong>start:</strong> {{ event.start_date }}<br>
+<strong>end:</strong> {{ event.end_date }}<br>
+<strong>notify:</strong> {{ event.notify_date }}<br>
+<strong>location:</strong> {{ event.location }}<br>
+<strong>message:</strong> {{ event.message }}<br>
+<strong>status:</strong> {{ event.status }}<br>
+<strong>contacts:</strong>
     {% for contact in event.contacts.all %}
     {{ contact.name}}/{{ contact.email }},
     {% endfor %}

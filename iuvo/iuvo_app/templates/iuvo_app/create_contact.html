@@ -3,13 +3,22 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 {% block content %}
-{% if logged_in %}
+{% if user %}
 <h1>Create A New Contact</h1>
 Please complete the following form to create a new emergency contact.
-{{ bootstrap_form: create_contact}}
+<form action="{% url 'iuvo_app.views.create_contact_view' user.pk %}" method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form contact_form %}
+
+
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "picture" %} Save
+        </button>
+    {% endbuttons %}
+</form>
 {% else %}
 <h1>Please log in</h1>
 <p>If you want to create a contact, you need to be logged in.
 {% endif %}
-{# Is it possible to do this in the view so it will flask the 'else' condition after auto redirecting to the login page? #}
 {% endblock content %}

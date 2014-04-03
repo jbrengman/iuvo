@@ -4,20 +4,15 @@
 
 
 {% block title %}
-Check In super(())
+Check In - iuvō
 {% endblock title %}
-
-
-{% block head %}
-
-{% endblock head %}
 
 
 {% block content %}
 {% if logged_in %}
 <h1>Check in</h1>
 <h3>There you are! We were worried!</h3>
-<p>Please click the green button to disable the following alarm:</p>
+<p>The following alarm has been disabled!</p>
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
@@ -37,7 +32,6 @@ Check In super(())
       <td>{{ event.notify_date }}</td>
       <td>{{ event.location }}</td>
     </tr>
-<button type="button" class="btn btn-success">All's Well – Turn off the alarm!</button>
 {% else %}
 <h1>Well hello there!</h1>
 <p>I'm not sure how you got here, but there's not much to see on this page if

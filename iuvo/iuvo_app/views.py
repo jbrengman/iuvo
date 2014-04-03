@@ -143,7 +143,6 @@ def edit_event_view(request, user_id, event_id):
         raise Http404
     if request.method == 'POST':
         form = EventForm(request.POST, instance=event)
-        # import pdb; pdb.set_trace()
         if form.is_valid():
             # event.title = form.cleaned_data.get('title')
             # event.location = form.cleaned_data.get('location')

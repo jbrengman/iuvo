@@ -1,12 +1,13 @@
 from django.conf.urls import patterns, url
 from django.contrib import admin
+from django.contrib.auth.views import login, logout
 admin.autodiscover()
 
 
 urlpatterns = patterns(
     'iuvo_app.views',
     url(r'^$', 'home_view', name='home'),
-    url(r'^login/$', 'login_view', name='login'),
+    # url(r'^login/$', 'login_view', name='login'),
     url(r'^register/$', 'register_view', name='register'),
     url(r'^about/$', 'about_view', name='about'),
 
@@ -26,4 +27,10 @@ urlpatterns = patterns(
     url(r'^(\d+)/contacts/(\d+)/$', 'view_contact_view', name='view_contact'),
     url(r'^(\d+)/contacts/(\d+)/edit/$', 'edit_contact_view', name='edit_contact'),
     url(r'^(\d+)/contacts/$', 'contacts_list_view', name='contacts_list'),
+)
+
+urlpatterns += patterns(
+    'django.contrib.auth.views',
+    url(r'^login/$', 'login', {'template_name': 'registration/login.html'}, name='login'),
+    url(r'^logout/$', 'logout', {'next_page': 'iuvo_app.views.home_view'}, name='logout'),
 )

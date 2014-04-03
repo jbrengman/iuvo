@@ -1,4 +1,4 @@
-{% extends 'temp_base.html' %}
+{% extends 'iuvo_app/base.html' %}
 {% load bootstrap3 %}
 
 
@@ -14,7 +14,7 @@
 
 
 {% block content %}
-
+<h1>Current Events</h1>
   <div class="panel panel-success">
   <div class="panel-heading">
     <h3 class="panel-title">The following events are currently counting down:</h3>
@@ -30,7 +30,7 @@
     </tr>
   </thead>
   <tbody>
-  {% for event in current_events %}
+  {% for event in events %}
     <tr>
       <td><a href="{% url 'iuvo_app.views.view_event_view' user.pk event.pk %}">{{ event.name }}</a></td>
       <td>{{ event.time }}</td>
@@ -44,16 +44,4 @@
   </table>
   </div>
   </div>
-{# title: {{ event.title }}</a><br>
-start: {{ event.start_date }}<br>
-end: {{ event.end_date }}<br>
-notify: {{ event.notify_date }}<br>
-location: {{ event.location }}<br>
-message: {{ event.message }}<br>
-status: {{ event.status }}<br>
-contacts:
-    {% for contact in event.contacts.all %}
-    {{ contact.name}}/{{ contact.email }},
-    {% endfor %}
-<br><br> #}
 {% endblock content %}

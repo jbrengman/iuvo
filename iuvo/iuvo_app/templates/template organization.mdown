@@ -1,11 +1,22 @@
 # iuvō templates
 
 ## Base template (_base.html_)
-Simply a template off of which all the others are based.
+Simply a template off of which all the others are based. Includes:
+
+* Nav bar
+    * About
+    * Register
+    * Login
+    * Dropdown menu:
+        * User Home
+        * Create Event
+        * Events
+        * Contacts
+        * Log Out
 
 ## Home Page (_homepage.html_) ##
 Extends base.html
-* Login box (Oauth)
+
 * Welcome blurb
 * Explanation of how to use.
     * Possibly refactored to be a video.
@@ -33,10 +44,10 @@ Extends base.html
 
 * Tells them that they've successfully linked their (whatever) account.
 
-## User Pages
+## User Pages (_user_home.html_)
 A unified set of pages that allow users to edit personal information, create/edit/archive/delete events, and add & edit contacts.
 
-Might want to have its own base? Not sure how best to do this.
+Ideally, user_home.html will have a template with a sidebar on the left and a div on the right that can display the following pages using js/ajax.
 
 ### User Home (_reminders.html_)
 The default page for the user panel.

@@ -301,6 +301,12 @@ a:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
+footer {
+  background-color:rgba(237,240,241,1);
+  margin-top: 10px;
+  padding-left: 10px;
+}
+}
 figure {
   margin: 0;
 }
@@ -2375,8 +2381,8 @@ input[type="button"].btn-block {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('/static/fonts/glyphicons-halflings-regular.eot');
+  src: url('/static/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/static/fonts/glyphicons-halflings-regular.woff') format('woff'), url('/static/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/static/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 .glyphicon {
   position: relative;

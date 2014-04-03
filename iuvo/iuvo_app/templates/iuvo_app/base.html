@@ -24,9 +24,9 @@
     <a class="navbar-brand" href="/">iuvō</a>
   </div>
   <div class="navbar-collapse collapse navbar-inverse-collapse">
-  {% if not request.user.is_authenticated %}
+  {% if not logged_in %}
     <ul class="nav navbar-nav">
-      <li><a href="/register">{% bootstrap_icon "thumbs-up" %} register</a></li>
+      <li><a href="/accounts/register">{% bootstrap_icon "thumbs-up" %} Register</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
           <li><a href="/login/">{% bootstrap_icon "log-in" %} Login</a></li>
@@ -58,14 +58,11 @@
 {% endblock %}
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
-<footer>
-iuvō – made in seattle for <a href="http://codefellows.org">code fellows</a><br />
-©2014
-</footer>
-
+<div class="col-md-12">
+  <div id="content">
+      {% block content %}{% endblock %}
+  </div>
+</div>
 </body>
 
 </html>

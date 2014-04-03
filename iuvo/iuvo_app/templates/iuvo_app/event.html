@@ -4,16 +4,13 @@
 
 
 {% block title %}
-{{ event.title }}
+{{ event.title }} - iuvō
 {% endblock title %}
 
 
-{% block head %}
-{{ event.title }}
-{% endblock head %}
-
 
 {% block content %}
+<h1>{{ event.title }}</h1>
 <strong>title:</strong> {{ event.title }}<br>
 <strong>start:</strong> {{ event.start_date }}<br>
 <strong>end:</strong> {{ event.end_date }}<br>

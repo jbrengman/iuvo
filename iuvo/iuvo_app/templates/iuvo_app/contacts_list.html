@@ -17,15 +17,17 @@ contacts - super(())
       <th>Name</th>
       <th>Email</th>
       <th>Phone</th>
+      <th>Controls</th>
     </tr>
   </thead>
   <tbody>
   {% for contact in contacts %}
     <tr>
       <td><a href="{% url 'iuvo_app.views.view_contact_view' user.pk contact.pk %}">
-name: {{ contact.name }}</a></td>
+{{ contact.name }}</a></td>
       <td>{{ contact.email }}</td>
       <td>{{ contact.phone_str }}</td>
+      <td> button</td>
     </tr>
 {% endfor %}
 </tbody>

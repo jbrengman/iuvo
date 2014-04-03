@@ -1,23 +1,15 @@
 {% extends 'iuvo_app/base.html' %}
 {% load bootstrap3 %}
 
-
-
 {% block title %}
 Contact {{ contact.name }}
 {% endblock title %}
 
-
-{% block head %}
-Contact: {{ contact.name }}
-{% endblock head %}
-
-
 {% block content %}
-name: {{ contact.name }}<br>
-email: {{ contact.email }}<br>
+<h1>{{ contact.name }}</h1>
+
+<h3>email: {{ contact.email }}<br>
 phone_str: {{ contact.phone_str }}<br>
 phone_int: {{ contact.phone_int }}<br>
-description: {{ contact.description }}<br>
-message: {{ event.message }}
+(delete button)(edit button)
 {% endblock content %}

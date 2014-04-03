@@ -24,7 +24,7 @@
     <a class="navbar-brand" href="/">iuvō</a>
   </div>
   <div class="navbar-collapse collapse navbar-inverse-collapse">
-  {% if not logged_in %}
+  {% if not user %}
     <ul class="nav navbar-nav">
       <li><a href="/accounts/register">{% bootstrap_icon "thumbs-up" %} Register</a></li>
     </ul>
@@ -34,18 +34,14 @@
   </div>
 </div>
   {% else %}
-      <ul class="nav navbar-nav">
-      <li><a href="/register">register</a></li>
-    </ul>
 
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% bootstrap_icon "user" %} User Control <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="/user/">{% bootstrap_icon "home" %}  Home</a></li>
-          <li><a href="/new/">{% bootstrap_icon "plus" %}  New Event</a></li>
-          <li><a href="/new/">{% bootstrap_icon "list-alt" %}  Events</a></li>
-          <li><a href="/new/">{% bootstrap_icon "earphone" %}  Contacts</a></li>
+          <li><a href={% url 'iuvo_app.views.events_list_view' user.pk%}>{% bootstrap_icon "list-alt" %}  Events</a></li>
+          <li><a href={% url 'iuvo_app.views.create_event_view' user.pk%}>{% bootstrap_icon "plus" %}  New Event</a></li>
+          <li><a href={% url 'iuvo_app.views.contacts_list_view' user.pk%}>{% bootstrap_icon "earphone" %}  Contacts</a></li>
           <li class="divider"></li>
           <li><a href="#">{% bootstrap_icon "log-out" %} Log Out</a></li>
         </ul>

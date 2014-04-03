@@ -1,4 +1,4 @@
-from django.forms import ModelForm, CharField
+from django.forms import ModelForm, CharField, ChoiceField
 from iuvo_app.models import Event, Contact
 from registration.forms import RegistrationForm
 from django import forms
@@ -12,13 +12,23 @@ class ContactForm(ModelForm):
 
 
 class EventForm(ModelForm):
+    tzchoices = [
+        ('US/Hawaii', 'US/Hawaii'),
+        ('US/Alaska', 'US/Alaska'),
+        ('US/Pacific', 'US/Pacific'),
+        ('US/Mountain', 'US/Moutain'),
+        ('US/Arizona', 'US/Arizona'),
+        ('US/Central', 'US/Central'),
+        ('US/Eastern', 'US/Eastern'),
+    ]
+    timezone = ChoiceField(choices=tzchoices)
 
     class Meta:
         model = Event
         fields = [
             'title', 'location', 'start_day', 'start_time',
             'end_day', 'end_time', 'notify_day', 'notify_time',
-            'contacts', 'message']
+            'timezone', 'contacts', 'message']
 
 
 class LoginForm(forms.Form):

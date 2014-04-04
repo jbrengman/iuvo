@@ -32,8 +32,7 @@
       <td>{% for contact in event.contacts.all %}
           <a href="{% url 'iuvo_app.views.view_contact_view' user.pk contact.pk %}">{{ contact.name}}</a><br />
           {% endfor %}
-      <td><a href="{% url 'iuvo_app.views.check_in_view' user.pk event.pk %}"><button type="button" class="btn btn-success btn-xs">Check In</button></a>
-          <a href="{% url 'iuvo_app.views.delete_event_view' user.pk event.pk %}"><button type="button" class="btn btn-danger btn-xs">Delete Event</button></a></td>
+      <td><a href="{% url 'iuvo_app.views.check_in_view' user.pk event.pk %}"><button type="button" class="btn btn-danger btn-xs">Check In</button></a>
 </div>
     </tr>
   {% endfor %}
@@ -69,7 +68,7 @@
           <a href="{% url 'iuvo_app.views.view_contact_view' user.pk contact.pk %}">{{ contact.name}}</a><br />
           {% endfor %}
       <td><a href="{% url 'iuvo_app.views.edit_event_view' user.pk event.pk %}"><button type="button" class="btn btn-success btn-xs">Edit Event</button></a>
-          <a href="{% url 'iuvo_app.views.delete_event_view' user.pk event.pk %}"><button type="button" class="btn btn-danger btn-xs">Delete Event</button></a></td>
+          <a href="{% url 'iuvo_app.views.check_in_view' user.pk event.pk %}"><button type="button" class="btn btn-warning btn-xs">Archive Event</button></a></td>
     </tr>
   {% endfor %}
   </tbody>
@@ -103,8 +102,7 @@
       <td>{% for contact in event.contacts.all %}
           <a href="{% url 'iuvo_app.views.view_contact_view' user.pk contact.pk %}">{{ contact.name}}</a><br />
           {% endfor %}
-      <td><a href="{% url 'iuvo_app.views.edit_event_view' user.pk event.pk %}"><button type="button" class="btn btn-success btn-xs">Edit Event</button></a>
-          <a href="{% url 'iuvo_app.views.delete_event_view' user.pk event.pk %}"><button type="button" class="btn btn-danger btn-xs">Delete Event</button></a></td>
+      <td><a href="{% url 'iuvo_app.views.delete_event_view' user.pk event.pk %}"><button type="button" class="btn btn-primary btn-xs">Delete Event</button></a></td>
     </tr>
   {% endfor %}
   </tbody>

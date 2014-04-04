@@ -7,10 +7,12 @@
     <div class="container">
       <center><h1>Leave The House <br />
       With Peace of Mind</h1></center>
-      <center><p class="lead">A solo hike? A first date? Automatically let your friends know if things take an unexpected turn.</p></center>
+      <center><p class="lead">A solo hike? A first date? Automatically let your friends know if things take an unexpected turn.</p>
+      </center>
       {% if user.is_authenticated %}
       <a class="btn btn-danger btn-lg btn-block" href={% url 'iuvo_app.views.events_list_view' user.pk%}>Manage Your Reminders!</a>
       {% else %}
+      <center><iframe src="//player.vimeo.com/video/91000022?title=0&amp;byline=0&amp;portrait=0" width="600" height="337" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></center>
       <a class="btn btn-info btn-lg btn-block" href="accounts/register/">Get Started Now!</a>
       {% endif %}
     </div>

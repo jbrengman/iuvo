@@ -22,11 +22,13 @@ urlpatterns = patterns(
     url(r'^(\d+)/events/upcoming/$', 'events_upcoming_view', name='events_upcoming'),
     url(r'^(\d+)/events/current/$', 'events_current_view', name='events_current'),
     url(r'^(\d+)/events/past/$', 'events_past_view', name='events_past'),
+    url(r'^(\d+)/events/(\d+)/delete/$', 'delete_event_view', name='delete_event'),
 
     url(r'^(\d+)/contacts/new/$', 'create_contact_view', name='create_contact'),
     url(r'^(\d+)/contacts/(\d+)/$', 'view_contact_view', name='view_contact'),
     url(r'^(\d+)/contacts/(\d+)/edit/$', 'edit_contact_view', name='edit_contact'),
     url(r'^(\d+)/contacts/$', 'contacts_list_view', name='contacts_list'),
+    url(r'^(\d+)/contacts/(\d+)/delete/$', 'delete_contact_view', name='delete_contact'),
 )
 
 urlpatterns += patterns(

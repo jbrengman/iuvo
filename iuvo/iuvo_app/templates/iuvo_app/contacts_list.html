@@ -27,7 +27,8 @@ contacts - iuvō
 {{ contact.name }}</a></td>
       <td>{{ contact.email }}</td>
       <td>{{ contact.phone_str }}</td>
-      <td> <a href="{% url 'iuvo_app.views.edit_contact_view' user.pk contact.pk %}"><button type="button" class="btn btn-warning btn-xs">Edit</button></td></a>
+      <td> <a href="{% url 'iuvo_app.views.edit_contact_view' user.pk contact.pk %}"><button type="button" class="btn btn-warning btn-xs">Edit Contact</button></a>
+          <a href="{% url 'iuvo_app.views.delete_contact_view' user.pk contact.pk %}"><button type="button" class="btn btn-danger btn-xs">Delete Contact</button></a></td>
     </tr>
 {% endfor %}
 </tbody>

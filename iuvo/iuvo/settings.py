@@ -53,8 +53,9 @@ class Base(Configuration):
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_HOST_USER = 'jwhitecf@gmail.com'
     EMAIL_HOST_PASSWORD = 'junk3r3ma1lf0rflask'
-    DEFAULT_FROM_EMAIL = 'jwhitecf@gmail.com'
+    DEFAULT_FROM_EMAIL = 'Iuvo Staff <jwhitecf@gmail.com>'
     EMAIL_PORT = 587
+
 
     MIDDLEWARE_CLASSES = (
         'django.contrib.sessions.middleware.SessionMiddleware',

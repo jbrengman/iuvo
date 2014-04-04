@@ -174,15 +174,17 @@ def edit_event_view(request, user_id, event_id):
             # event.notify_day = form.cleaned_data.get('notify_day')
             # event.notify_time = form.cleaned_data.get('notify_time')
             event = form.save(commit=False)
+            tz = form.cleaned_data.get('timezone')
             start_date = get_date(
                 form.cleaned_data.get('start_day'),
-                form.cleaned_data.get('start_time'))
+                form.cleaned_data.get('start_time'), tz)
             end_date = get_date(
                 form.cleaned_data.get('end_day'),
-                form.cleaned_data.get('end_time'))
+                form.cleaned_data.get('end_time'), tz)
             notify_date = get_date(
                 form.cleaned_data.get('notify_day'),
-                form.cleaned_data.get('notify_time'))
+                form.cleaned_data.get('notify_time'), tz)
+
 
             now = timezone.now()
             if (  # Checking for appropriate dates.

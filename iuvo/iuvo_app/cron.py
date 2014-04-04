@@ -99,5 +99,5 @@ def send_3day_notifications():
 
 
 def send_email(recipient_list, subject, body):
-    send_mail(subject, body, 'jwhitecf@gmail.com',
+    send_mail(subject, body, 'Iuvo Staff <jwhitecf@gmail.com>',
               recipient_list, fail_silently=False)

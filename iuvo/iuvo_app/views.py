@@ -3,11 +3,12 @@ from django.http import Http404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from iuvo_app.models import Event, Contact
-from iuvo_app.forms import ContactForm, EventForm
+from iuvo_app.forms import ContactForm, EventForm, LoginForm
 import datetime
 import pytz
 from django.utils import timezone
 from django.contrib import messages
+from django.core.urlresolvers import reverse
 
 
 def home_view(request):
@@ -184,7 +185,7 @@ def edit_event_view(request, user_id, event_id):
                 form.cleaned_data.get('notify_day'),
                 form.cleaned_data.get('notify_time'))
 
-            now = datetime.datetime.now()
+            now = timezone.now()
             if (  # Checking for appropriate dates.
                     end_date < now or
                     notify_date < end_date):
@@ -206,6 +207,16 @@ def edit_event_view(request, user_id, event_id):
     else:
         context = {'event_form': EventForm(instance=event), 'event': event}
         return render(request, 'iuvo_app/edit_event.html', context)
+
+
+def delete_event_view(request, user_id, event_id):
+    if int(user_id) != request.user.pk:
+        raise Http404
+    try:
+        event = Event.objects.get(pk=event_id)
+    except Event.DoesNotExist:
+        raise Http404
+    event.delete()
 
 
 def contacts_list_view(request, user_id):
@@ -282,6 +293,16 @@ def view_contact_view(request, user_id, contact_id):
     return render(request, 'iuvo_app/contact.html', context)
 
 
+def delete_contact_view(request, user_id, contact_id):
+    if int(user_id) != request.user.pk:
+        raise Http404
+    try:
+        contact = Contact.objects.get(pk=contact_id)
+    except Contact.DoesNotExist:
+        raise Http404
+    contact.delete()
+
+
 # Helper methods
 
 def get_date(date, time, timezone):
@@ -290,9 +311,10 @@ def get_date(date, time, timezone):
     date_ob = datetime.date(
         int(datesplit[2]), int(datesplit[0]), int(datesplit[1]))
     time_tup = time.split(':')
-    time_ob = datetime.time(int(time_tup[0]), int(time_tup[1]), tzinfo=tz)
+    time_ob = datetime.time(int(time_tup[0]), int(time_tup[1]))
     date_time = datetime.datetime.combine(date_ob, time_ob)
-    return date_time
+    date_time_localized = tz.localize(date_time)
+    return date_time_localized
 
 
 def clean_num(num):

@@ -17,11 +17,12 @@ def send_notifications():
         if now > event.notify_date:
             # send notification to user's contacts.
             contacts = Contact.objects.filter(owner=event.owner)
+            personal_msg = event.message
             # subject = "YOUR FRIEND MAY NEED HELP!!"
             for contact in contacts:
                 eddress_list = [contact.email]
                 body_template = loader.get_template('notifications/notify_contacts.txt')
-                body_context = Context({})
+                body_context = Context({'msg': personal_msg, 'name': contact.name})
                 body = body_template.render(body_context)
                 subject_template = loader.get_template('notifications/contacts_email_subject.txt')
                 subject_context = Context({})
@@ -36,7 +37,7 @@ def send_notifications():
             eddress_list = [event.owner.email]
             # subject = "Iuvo event notice"
             body_template = loader.get_template('notifications/ended.txt')
-            body_context = Context({'first_name': event.owner.first_name, 'last_name': event.owner.last_name})
+            body_context = Context({'username': event.owner.username})
             body = body_template.render(body_context)
             subject_template = loader.get_template('notifications/user_email_subject.txt')
             subject_context = Context({})
@@ -51,7 +52,7 @@ def send_notifications():
             eddress_list = [event.owner.email]
             # subject = "Iuvo event notice"
             body_template = loader.get_template('notifications/started.txt')
-            body_context = Context({'first_name': event.owner.first_name, 'last_name': event.owner.last_name})
+            body_context = Context({'username': event.owner.username})
             body = body_template.render(body_context)
             subject_template = loader.get_template('notifications/user_email_subject.txt')
             subject_context = Context({})
@@ -68,11 +69,11 @@ def send_3day_notifications():
 
     for event in events_post_3day:
         delta = now - event.end_date
-        if delta.days % 3 == 0:
+        if delta.days % 3 == 0 and delta.days != 0:
             eddress_list = [event.owner.email]
             # subject = "Iuvo event notice"
             body_template = loader.get_template('notifications/late_checkin_email.txt')
-            body_context = Context({'first_name': event.owner.first_name, 'last_name': event.owner.last_name, 'late': delta.days})
+            body_context = Context({'username': event.owner.username, 'late': delta.days})
             body = body_template.render(body_context)
             subject_template = loader.get_template('notifications/user_email_subject.txt')
             subject_context = Context({})
@@ -81,14 +82,14 @@ def send_3day_notifications():
 
     for event in events_notified:
         delta = now - event.end_date
-        # delta_min = delta.seconds / 60
-        # if delta.seconds / 60 > 3:
-        if delta.days > 3:
+        delta_min = delta.seconds / 60
+        if delta.seconds / 60 > 3:
+        # if delta.days > 3:
             eddress_list = [event.owner.email]
             # subject = "Iuvo event notice"
             body_template = loader.get_template('notifications/late_checkin_email.txt')
-            body_context = Context({'first_name': event.owner.first_name, 'last_name': event.owner.last_name, 'late': delta.days})
-            # body_context = Context({'first_name': event.owner.first_name, 'last_name': event.owner.last_name, 'late': delta_min})
+            body_context = Context({'username': event.owner.username, 'late': delta.days})
+            # body_context = Context({'username': event.owner.username, 'late': delta_min})
             body = body_template.render(body_context)
             subject_template = loader.get_template('notifications/user_email_subject.txt')
             subject_context = Context({})

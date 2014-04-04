@@ -1,1 +1,0 @@
-A notification from {{ site.domain }}

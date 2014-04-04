@@ -8,7 +8,6 @@ import datetime
 import pytz
 from django.utils import timezone
 from django.contrib import messages
-from django.core.urlresolvers import reverse
 
 
 def home_view(request):
@@ -217,6 +216,7 @@ def delete_event_view(request, user_id, event_id):
     except Event.DoesNotExist:
         raise Http404
     event.delete()
+    return redirect(events_list_view, user_id)
 
 
 def contacts_list_view(request, user_id):
@@ -301,9 +301,10 @@ def delete_contact_view(request, user_id, contact_id):
     except Contact.DoesNotExist:
         raise Http404
     contact.delete()
-
+    return redirect(contacts_list_view, user_id)
 
 # Helper methods
+
 
 def get_date(date, time, timezone):
     tz = pytz.timezone(timezone)

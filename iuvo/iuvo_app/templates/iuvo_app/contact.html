@@ -2,14 +2,13 @@
 {% load bootstrap3 %}
 
 {% block title %}
-Contact {{ contact.name }}
+Contacts: {{ contact.name }}
 {% endblock title %}
 
 {% block content %}
-<h1>Your contacts</h1>
 <h2>{{ contact.name }}</h2>
 
 <h3>Email: {{ contact.email }}<br>
 Phone: {{ contact.phone_str }}<br /><br />
-<button type="button" class="btn btn-primary">Edit Contact</button>
+<a href="{% url 'iuvo_app.views.edit_contact_view' user.pk contact.pk %}"><button type="button" class="btn btn-primary">Edit Contact</button> <a href="{% url 'iuvo_app.views.events_list_view' user.pk %}"><button type="button" class="btn btn-success">Event List</button>
 {% endblock content %}

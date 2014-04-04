@@ -28,12 +28,13 @@
   <tbody>
   {% for contact in event.contacts.all %}
     <tr>
-      <td>{{ contact.name }}</td>
+      <td><a href="{% url 'iuvo_app.views.view_contact_view' user.pk contact.pk %}">{{ contact.name }}</a></td>
       <td>{{ contact.email }}</td>
     </tr>
   {% endfor %}
   </tbody>
   </table>
+  <a href="{% url 'iuvo_app.views.edit_event_view' user.pk event.pk %}"><button type="button" class="btn btn-primary">Edit this event</button></a>
   <a href="{% url 'iuvo_app.views.check_in_view' user.pk event.pk %}"><button type="button" class="btn btn-danger">Check in to this event</button></a>
   <br>Note: Checking in will stop alerts from being sent for this event.
 {% endblock content %}
